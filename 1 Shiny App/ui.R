@@ -27,12 +27,12 @@ dashboardPage(
       tabItem(tabName = "trends",        # TAB 1 'trends'
               fluidPage(
                 selectizeInput("trends_country",               # User selects the country for trends
-                               "Select a Country:", trend_countries,
-                               selected = trend_countries[1],
+                               "Select a Country:", trends_countries,
+                               selected = trends_countries[1],
                                width = 400),
                 selectizeInput("trends_indicator1",             # User selects indicator 1 for trends
-                               "Select a Metric:", trend_indicators,
-                               selected = trend_indicators[1],
+                               "Select a Metric:", trends_indicators,
+                               selected = trends_indicators[1],
                                width = 400),
                 selectizeInput("trends_indicator2",             # User selects indicator 2 for trends
                                "Select a Metric:", c(),
@@ -76,8 +76,9 @@ dashboardPage(
                                               choices = happy_predictors,
                                               selected = happy_predictors), width = 5),
                        # box(h4(textOutput("importances_header"))),
-                       box(DT::dataTableOutput("importance_table",
-                                               width = 5))
+                       box(h4("Importances"), hr(),
+                           DT::dataTableOutput("importance_table"),
+                           width = 5)
               )            # End of fluidRow 2, need a comma?
       )               # End of tabItem3
     )              # End of tabItems

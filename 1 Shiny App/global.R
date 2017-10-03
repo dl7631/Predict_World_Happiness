@@ -14,7 +14,9 @@ library(ggthemes)
 # For building maps
 #------------------------------------------------------------------------
 
-formaps <- read_csv("World Dev Indic Final Raw.csv")
+fortrends <- read_csv("World Dev Indic Final.csv")
+formaps <- fortrends[1:4]
+# names(fortrends)
 # names(formaps)
 
 # Fixing Ivory Cost's name in both 'formap' and 'fortrends'
@@ -24,24 +26,23 @@ my177 <- data.frame(Country = countries$name, stringsAsFactors = F)
 
 #------------------------------------
 # leaflet object to build the map
-leaflet_map <- leaflet(countries, options = leafletOptions(minZoom = 2))
+leaflet_map <- leaflet(countries, options = leafletOptions(minZoom = 2)) %>% 
+  setView(lng = 28.0339,lat = 1.6596, zoom = 2)
 
 map_indicators <- unique(formaps$Indicator) # For user to select indicator
 map_years <- unique(formaps$Year)           # For user to select year
-
 
 
 #------------------------------------------------------------------------
 # For trends, i.e., showing changes over time
 #------------------------------------------------------------------------
 
-fortrends <- read_csv("World Dev Indic Final Z.csv")
+# See how fortrends was read in above - under "For building maps"
 names(fortrends)[4] <- "Z_Score"
 names(fortrends)[5] <- "Mean_Centered_Score"
 
-trend_countries <- unique(fortrends$Country)    # For user to select country
-trend_indicators <- unique(fortrends$Indicator) # For user to select indicator
-
+trends_countries <- unique(fortrends$Country)    # For user to select country
+trends_indicators <- unique(fortrends$Indicator) # For user to select indicator
 
 
 #------------------------------------------------------------------------

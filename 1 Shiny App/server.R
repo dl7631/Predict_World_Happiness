@@ -14,10 +14,10 @@ function(input, output, session){
   # For trends:
   #----------------------------------------------------------------------
   observeEvent(input$trends_indicator1, {
-    trend_indicators2 = trend_indicators[!trend_indicators %in% 
+    trends_indicators2 = trends_indicators[!trends_indicators %in% 
                                            input$trends_indicator1]
     updateSelectizeInput(session, inputId = "trends_indicator2", 
-                         choices = trend_indicators2)
+                         choices = trends_indicators2)
   })
   
   #----------------------------------------------------------------------

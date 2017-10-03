@@ -244,32 +244,32 @@ unique(wdi$IndicatorName)
 
 #--------------------------------------
 # Removing additional indicators:
-length(unique(wdi$IndicatorCode))
-badindic <- c("% of students in primary ed. who are female",
-              "Consumer price index (2010 = 100)",
-              "Exports of goods and services (% of GDP)",
-              "Gross enrolment ratio, primary, female (%)",
-              "Gross enrolment ratio, primary, male (%)",
-              "Physicians (per 1,000 people)",
-              "Population ages 65 and above (% of total)",
-              "Population, ages 0-14 (% of total)",
-              "Population, ages 15-64 (% of total)",
-              "Final consumption expenditure (annual % growth)",
-              "Foreign direct investment, net inflows (% of GDP)",
-              "GDP per capita (current US$)",
-              "Imports of goods and services (% of GDP)",
-              "Trade (% of GDP)",
-              "Immunization, DPT (% of children ages 12-23 months)",
-              "Improved water source (% of pop. with access)",
-              "Internet users (per 100 people)",
-              "Improved sanitation facilities (% of pop. with access)",
-              "Incidence of tuberculosis (per 100,000 people)"
-             )
-
-dim(wdi)      # 116,636
-wdi <- wdi %>% filter(!IndicatorName %in% badindic)
-dim(wdi)      # 54,250
-length(unique(wdi$IndicatorCode)) # 15
+# length(unique(wdi$IndicatorCode))
+# badindic <- c("% of students in primary ed. who are female",
+#               "Consumer price index (2010 = 100)",
+#               "Exports of goods and services (% of GDP)",
+#               "Gross enrolment ratio, primary, female (%)",
+#               "Gross enrolment ratio, primary, male (%)",
+#               "Physicians (per 1,000 people)",
+#               "Population ages 65 and above (% of total)",
+#               "Population, ages 0-14 (% of total)",
+#               "Population, ages 15-64 (% of total)",
+#               "Final consumption expenditure (annual % growth)",
+#               "Foreign direct investment, net inflows (% of GDP)",
+#               "GDP per capita (current US$)",
+#               "Imports of goods and services (% of GDP)",
+#               "Trade (% of GDP)",
+#               "Immunization, DPT (% of children ages 12-23 months)",
+#               "Improved water source (% of pop. with access)",
+#               "Internet users (per 100 people)",
+#               "Improved sanitation facilities (% of pop. with access)",
+#               "Incidence of tuberculosis (per 100,000 people)"
+#              )
+# 
+# dim(wdi)      # 116,636
+# wdi <- wdi %>% filter(!IndicatorName %in% badindic)
+# dim(wdi)      # 54,250
+# length(unique(wdi$IndicatorCode)) # 15
 
 ### Calculating Value Z Score and Centered Score by country:
 wdi <- wdi %>% group_by(IndicatorName, CountryName) %>% 
@@ -286,17 +286,20 @@ temp <- wdi %>% group_by(IndicatorName, CountryName) %>%
 sum(temp$summa) == 0  # it should be 0 even without na.rm = T
 sum(temp$std); length(unique(wdi$IndicatorName)) *
                     length(unique(wdi$CountryName))  # it should be 0 even without na.rm = T
+### Replacing NA in Value.z for all cases when Value is not NA with a 0
+wdi$Value.z[is.na(wdi$Value.z) & !is.na(wdi$Value)] <- 0
 
+# write.csv(wdi, "x test.csv", row.names = F)
 #------------------------------------------------------
 # Making implicit NAs explicit so that every country
 # has a value (or NA) for every indicator, every year
 #------------------------------------------------------
 
 names(wdi)
-dim(wdi)  # 54,250
+dim(wdi)  # 116,636
 wdi <- complete(wdi, CountryName, Year, IndicatorName)
-dim(wdi)  # 56,100
-# count(wdi, IndicatorName)
+dim(wdi)  # 127,160
+# View(count(wdi, IndicatorName))
 # View(count(wdi, CountryName))
 # View(count(wdi, Year))
 
@@ -304,8 +307,6 @@ dim(wdi)  # 56,100
 # Finalizing variable names in 2 final files
 #------------------------------------------------------
 
-names(wdi)[1] <- "Country"
-names(wdi)[3] <- "Indicator"
+names(wdi)[c(1, 3)] <- c("Country", "Indicator")
 
-# write.csv(wdi[c(1:3, 6)], "World Dev Indic Final Raw.csv", row.names = F, na = "")
-# write.csv(wdi[c(1:3, 7:8)], "World Dev Indic Final Z.csv", row.names = F, na = "")
+# write.csv(wdi[c(1:3, 6:8)], "World Dev Indic Final.csv", row.names = F, na = "")
