@@ -1,0 +1,332 @@
+IndicatorCode,IndicatorName,NumCountries,NumYears,FirstYear,LastYear
+AG.LND.TOTL.K2,Land area (sq. km),169,22,1993,2014
+AG.SRF.TOTL.K2,Surface area (sq. km),170,22,1993,2014
+BM.TRF.PWKR.CD.DT,"Personal remittances, paid (current USdollar)",160,22,1993,2014
+BN.KLT.DINV.CD,"Foreign direct investment, net (BoP, current USdollar)",156,22,1993,2014
+BN.TRF.CURR.CD,"Net secondary income (BoP, current USdollar)",162,22,1993,2014
+BX.KLT.DINV.CD.WD,"Foreign direct investment, net inflows (BoP, current USdollar)",167,22,1993,2014
+BX.KLT.DINV.WD.GD.ZS,"Foreign direct investment, net inflows (% of GDP)",166,22,1993,2014
+BX.PEF.TOTL.CD.WD,"Portfolio equity, net inflows (BoP, current USdollar)",155,22,1993,2014
+BX.TRF.PWKR.CD.DT,"Personal remittances, received (current USdollar)",160,22,1993,2014
+BX.TRF.PWKR.DT.GD.ZS,"Personal remittances, received (% of GDP)",159,22,1993,2014
+EA.PRD.AGRI.KD,Agriculture value added per worker (constant 2005 USdollar),156,22,1993,2014
+EN.POP.DNST,Population density (people per sq. km of land area),169,22,1993,2014
+FI.RES.TOTL.CD,"Total reserves (includes gold, current USdollar)",159,22,1993,2014
+FI.RES.XGLD.CD,Total reserves minus gold (current USdollar),159,22,1993,2014
+FP.CPI.TOTL,Consumer price index (2010 = 100),156,22,1993,2014
+FP.CPI.TOTL.ZG,"Inflation, consumer prices (annual %)",155,22,1993,2014
+IS.AIR.DPRT,"Air transport, registered carrier departures worldwide",159,22,1993,2014
+IS.AIR.GOOD.MT.K1,"Air transport, freight (million ton-km)",157,22,1993,2014
+IS.AIR.PSGR,"Air transport, passengers carried",159,22,1993,2014
+IT.CEL.SETS,Mobile cellular subscriptions,169,22,1993,2014
+IT.CEL.SETS.P2,Mobile cellular subscriptions (per 100 people),169,22,1993,2014
+IT.MLT.MAIN,Fixed telephone subscriptions,169,22,1993,2014
+IT.MLT.MAIN.P2,Fixed telephone subscriptions (per 100 people),169,22,1993,2014
+IT.NET.USER.P2,Internet users (per 100 people),169,22,1993,2014
+MS.MIL.MPRT.KD,Arms imports (SIPRI trend indicator values),161,22,1993,2014
+MS.MIL.XPND.CN,Military expenditure (current LCU),159,22,1993,2014
+MS.MIL.XPND.GD.ZS,Military expenditure (% of GDP),158,22,1993,2014
+NE.CON.GOVT.CD,General government final consumption expenditure (current USdollar),166,22,1993,2014
+NE.CON.GOVT.CN,General government final consumption expenditure (current LCU),166,22,1993,2014
+NE.CON.GOVT.KD,General government final consumption expenditure (constant 2005 USdollar),161,22,1993,2014
+NE.CON.GOVT.KD.ZG,General government final consumption expenditure (annual % growth),152,22,1993,2014
+NE.CON.GOVT.KN,General government final consumption expenditure (constant LCU),153,22,1993,2014
+NE.CON.GOVT.ZS,General government final consumption expenditure (% of GDP),166,22,1993,2014
+NE.CON.PETC.CD,"Household final consumption expenditure, etc. (current USdollar)",165,22,1993,2014
+NE.CON.PETC.CN,"Household final consumption expenditure, etc. (current LCU)",165,22,1993,2014
+NE.CON.PETC.KD,"Household final consumption expenditure, etc. (constant 2005 USdollar)",160,22,1993,2014
+NE.CON.PETC.KD.ZG,"Household final consumption expenditure, etc. (annual % growth)",151,22,1993,2014
+NE.CON.PETC.KN,"Household final consumption expenditure, etc. (constant LCU)",152,22,1993,2014
+NE.CON.PETC.ZS,"Household final consumption expenditure, etc. (% of GDP)",165,22,1993,2014
+NE.CON.PRVT.CD,Household final consumption expenditure (current USdollar),165,22,1993,2014
+NE.CON.PRVT.CN,Household final consumption expenditure (current LCU),165,22,1993,2014
+NE.CON.PRVT.KD,Household final consumption expenditure (constant 2005 USdollar),159,22,1993,2014
+NE.CON.PRVT.KD.ZG,Household final consumption expenditure (annual % growth),151,22,1993,2014
+NE.CON.PRVT.KN,Household final consumption expenditure (constant LCU),152,22,1993,2014
+NE.CON.PRVT.PC.KD,Household final consumption expenditure per capita (constant 2005 USdollar),159,22,1993,2014
+NE.CON.PRVT.PP.CD,"Household final consumption expenditure, PPP (current international dollar)",162,22,1993,2014
+NE.CON.PRVT.PP.KD,"Household final consumption expenditure, PPP (constant 2011 international dollar)",151,22,1993,2014
+NE.CON.TETC.CD,"Final consumption expenditure, etc. (current USdollar)",165,22,1993,2014
+NE.CON.TETC.CN,"Final consumption expenditure, etc. (current LCU)",166,22,1993,2014
+NE.CON.TETC.KD,"Final consumption expenditure, etc. (constant 2005 USdollar)",160,22,1993,2014
+NE.CON.TETC.KD.ZG,"Final consumption expenditure, etc. (annual % growth)",156,22,1993,2014
+NE.CON.TETC.KN,"Final consumption expenditure, etc. (constant LCU)",158,22,1993,2014
+NE.CON.TETC.ZS,"Final consumption expenditure, etc. (% of GDP)",166,22,1993,2014
+NE.CON.TOTL.CD,Final consumption expenditure (current USdollar),164,22,1993,2014
+NE.CON.TOTL.CN,Final consumption expenditure (current LCU),165,22,1993,2014
+NE.CON.TOTL.KD,Final consumption expenditure (constant 2005 USdollar),156,22,1993,2014
+NE.CON.TOTL.KN,Final consumption expenditure (constant LCU),154,22,1993,2014
+NE.DAB.DEFL.ZS,Gross national expenditure deflator (base year varies by country),159,22,1993,2014
+NE.DAB.TOTL.CD,Gross national expenditure (current USdollar),167,22,1993,2014
+NE.DAB.TOTL.CN,Gross national expenditure (current LCU),168,22,1993,2014
+NE.DAB.TOTL.KD,Gross national expenditure (constant 2005 USdollar),161,22,1993,2014
+NE.DAB.TOTL.KN,Gross national expenditure (constant LCU),159,22,1993,2014
+NE.DAB.TOTL.ZS,Gross national expenditure (% of GDP),166,22,1993,2014
+NE.EXP.GNFS.CD,Exports of goods and services (current USdollar),167,22,1993,2014
+NE.EXP.GNFS.CN,Exports of goods and services (current LCU),168,22,1993,2014
+NE.EXP.GNFS.KD,Exports of goods and services (constant 2005 USdollar),161,22,1993,2014
+NE.EXP.GNFS.KD.ZG,Exports of goods and services (annual % growth),159,22,1993,2014
+NE.EXP.GNFS.KN,Exports of goods and services (constant LCU),159,22,1993,2014
+NE.EXP.GNFS.ZS,Exports of goods and services (% of GDP),168,22,1993,2014
+NE.GDI.FTOT.CD,Gross fixed capital formation (current USdollar),165,22,1993,2014
+NE.GDI.FTOT.CN,Gross fixed capital formation (current LCU),166,22,1993,2014
+NE.GDI.FTOT.KD,Gross fixed capital formation (constant 2005 USdollar),159,22,1993,2014
+NE.GDI.FTOT.KD.ZG,Gross fixed capital formation (annual % growth),152,22,1993,2014
+NE.GDI.FTOT.KN,Gross fixed capital formation (constant LCU),153,22,1993,2014
+NE.GDI.FTOT.ZS,Gross fixed capital formation (% of GDP),166,22,1993,2014
+NE.GDI.STKB.CD,Changes in inventories (current USdollar),161,22,1993,2014
+NE.GDI.STKB.CN,Changes in inventories (current LCU),162,22,1993,2014
+NE.GDI.TOTL.CD,Gross capital formation (current USdollar),165,22,1993,2014
+NE.GDI.TOTL.CN,Gross capital formation (current LCU),166,22,1993,2014
+NE.GDI.TOTL.KD,Gross capital formation (constant 2005 USdollar),162,22,1993,2014
+NE.GDI.TOTL.KD.ZG,Gross capital formation (annual % growth),156,22,1993,2014
+NE.GDI.TOTL.KN,Gross capital formation (constant LCU),158,22,1993,2014
+NE.GDI.TOTL.ZS,Gross capital formation (% of GDP),166,22,1993,2014
+NE.IMP.GNFS.CD,Imports of goods and services (current USdollar),167,22,1993,2014
+NE.IMP.GNFS.CN,Imports of goods and services (current LCU),168,22,1993,2014
+NE.IMP.GNFS.KD,Imports of goods and services (constant 2005 USdollar),161,22,1993,2014
+NE.IMP.GNFS.KD.ZG,Imports of goods and services (annual % growth),159,22,1993,2014
+NE.IMP.GNFS.KN,Imports of goods and services (constant LCU),159,22,1993,2014
+NE.IMP.GNFS.ZS,Imports of goods and services (% of GDP),168,22,1993,2014
+NE.RSB.GNFS.CD,External balance on goods and services (current USdollar),167,22,1993,2014
+NE.RSB.GNFS.CN,External balance on goods and services (current LCU),168,22,1993,2014
+NE.RSB.GNFS.ZS,External balance on goods and services (% of GDP),168,22,1993,2014
+NE.TRD.GNFS.ZS,Trade (% of GDP),168,22,1993,2014
+NV.AGR.TOTL.CD,"Agriculture, value added (current USdollar)",162,22,1993,2014
+NV.AGR.TOTL.CN,"Agriculture, value added (current LCU)",163,22,1993,2014
+NV.AGR.TOTL.KD,"Agriculture, value added (constant 2005 USdollar)",156,22,1993,2014
+NV.AGR.TOTL.KD.ZG,"Agriculture, value added (annual % growth)",159,22,1993,2014
+NV.AGR.TOTL.KN,"Agriculture, value added (constant LCU)",160,22,1993,2014
+NV.AGR.TOTL.ZS,"Agriculture, value added (% of GDP)",161,22,1993,2014
+NV.IND.MANF.CD,"Manufacturing, value added (current USdollar)",160,22,1993,2014
+NV.IND.MANF.CN,"Manufacturing, value added (current LCU)",161,22,1993,2014
+NV.IND.MANF.KD.ZG,"Manufacturing, value added (annual % growth)",154,22,1993,2014
+NV.IND.MANF.KN,"Manufacturing, value added (constant LCU)",156,22,1993,2014
+NV.IND.MANF.ZS,"Manufacturing, value added (% of GDP)",159,22,1993,2014
+NV.IND.TOTL.CD,"Industry, value added (current USdollar)",162,22,1993,2014
+NV.IND.TOTL.CN,"Industry, value added (current LCU)",163,22,1993,2014
+NV.IND.TOTL.KD,"Industry, value added (constant 2005 USdollar)",156,22,1993,2014
+NV.IND.TOTL.KD.ZG,"Industry, value added (annual % growth)",158,22,1993,2014
+NV.IND.TOTL.KN,"Industry, value added (constant LCU)",159,22,1993,2014
+NV.IND.TOTL.ZS,"Industry, value added (% of GDP)",161,22,1993,2014
+NV.SRV.TETC.CD,"Services, etc., value added (current USdollar)",162,22,1993,2014
+NV.SRV.TETC.CN,"Services, etc., value added (current LCU)",163,22,1993,2014
+NV.SRV.TETC.KD,"Services, etc., value added (constant 2005 USdollar)",156,22,1993,2014
+NV.SRV.TETC.KD.ZG,"Services, etc., value added (annual % growth)",158,22,1993,2014
+NV.SRV.TETC.KN,"Services, etc., value added (constant LCU)",159,22,1993,2014
+NV.SRV.TETC.ZS,"Services, etc., value added (% of GDP)",161,22,1993,2014
+NY.EXP.CAPM.KN,Exports as a capacity to import (constant LCU),159,22,1993,2014
+NY.GDP.DEFL.KD.ZG,"Inflation, GDP deflator (annual %)",168,22,1993,2014
+NY.GDP.DEFL.ZS,GDP deflator (base year varies by country),168,22,1993,2014
+NY.GDP.DISC.CN,Discrepancy in expenditure estimate of GDP (current LCU),164,22,1993,2014
+NY.GDP.DISC.KN,Discrepancy in expenditure estimate of GDP (constant LCU),151,22,1993,2014
+NY.GDP.MKTP.CD,GDP at market prices (current USdollar),169,22,1993,2014
+NY.GDP.MKTP.CN,GDP (current LCU),169,22,1993,2014
+NY.GDP.MKTP.KD,GDP at market prices (constant 2005 USdollar),165,22,1993,2014
+NY.GDP.MKTP.KD.ZG,GDP growth (annual %),168,22,1993,2014
+NY.GDP.MKTP.KN,GDP (constant LCU),168,22,1993,2014
+NY.GDP.MKTP.PP.CD,"GDP, PPP (current international dollar)",163,22,1993,2014
+NY.GDP.MKTP.PP.KD,"GDP, PPP (constant 2011 international dollar)",163,22,1993,2014
+NY.GDP.PCAP.CD,GDP per capita (current USdollar),169,22,1993,2014
+NY.GDP.PCAP.CN,GDP per capita (current LCU),169,22,1993,2014
+NY.GDP.PCAP.KD,GDP per capita (constant 2005 USdollar),165,22,1993,2014
+NY.GDP.PCAP.KD.ZG,GDP per capita growth (annual %),168,22,1993,2014
+NY.GDP.PCAP.KN,GDP per capita (constant LCU),168,22,1993,2014
+NY.GDP.PCAP.PP.CD,"GDP per capita, PPP (current international dollar)",163,22,1993,2014
+NY.GDP.PCAP.PP.KD,"GDP per capita, PPP (constant 2011 international dollar)",163,22,1993,2014
+NY.GDS.TOTL.CD,Gross domestic savings (current USdollar),165,22,1993,2014
+NY.GDS.TOTL.CN,Gross domestic savings (current LCU),166,22,1993,2014
+NY.GDS.TOTL.ZS,Gross domestic savings (% of GDP),166,22,1993,2014
+NY.GDY.TOTL.KN,Gross domestic income (constant LCU),159,22,1993,2014
+NY.GNP.ATLS.CD,"GNI, Atlas method (current USdollar)",168,22,1993,2014
+NY.GNP.MKTP.CD,GNI (current USdollar),169,22,1993,2014
+NY.GNP.MKTP.CN,GNI (current LCU),169,22,1993,2014
+NY.GNP.MKTP.KD,GNI (constant 2005 USdollar),164,22,1993,2014
+NY.GNP.MKTP.KD.ZG,GNI growth (annual %),158,22,1993,2014
+NY.GNP.MKTP.KN,GNI (constant LCU),158,22,1993,2014
+NY.GNP.MKTP.PP.CD,"GNI, PPP (current international dollar)",163,22,1993,2014
+NY.GNP.MKTP.PP.KD,"GNI, PPP (constant 2011 international dollar)",161,22,1993,2014
+NY.GNP.PCAP.CD,"GNI per capita, Atlas method (current USdollar)",168,22,1993,2014
+NY.GNP.PCAP.CN,GNI per capita (current LCU),169,22,1993,2014
+NY.GNP.PCAP.KD,GNI per capita (constant 2005 USdollar),164,22,1993,2014
+NY.GNP.PCAP.KD.ZG,GNI per capita growth (annual %),158,22,1993,2014
+NY.GNP.PCAP.KN,GNI per capita (constant LCU),158,22,1993,2014
+NY.GNP.PCAP.PP.CD,"GNI per capita, PPP (current international dollar)",163,22,1993,2014
+NY.GNP.PCAP.PP.KD,"GNI per capita, PPP (constant 2011 international dollar)",161,22,1993,2014
+NY.GNS.ICTR.CD,Gross savings (current USdollar),160,22,1993,2014
+NY.GNS.ICTR.CN,Gross savings (current LCU),160,22,1993,2014
+NY.GNS.ICTR.GN.ZS,Gross savings (% of GNI),160,22,1993,2014
+NY.GNS.ICTR.ZS,Gross savings (% of GDP),160,22,1993,2014
+NY.GSR.NFCY.CD,Net income from abroad (current USdollar),167,22,1993,2014
+NY.GSR.NFCY.CN,Net income from abroad (current LCU),168,22,1993,2014
+NY.TRF.NCTR.CD,Net current transfers from abroad (current USdollar),153,22,1993,2014
+NY.TRF.NCTR.CN,Net current transfers from abroad (current LCU),153,22,1993,2014
+NY.TTF.GNFS.KN,Terms of trade adjustment (constant LCU),159,22,1993,2014
+PA.NUS.ATLS,DEC alternative conversion factor (LCU per USdollar),169,22,1993,2014
+PA.NUS.FCRF,"Official exchange rate (LCU per USdollar, period average)",158,22,1993,2014
+PA.NUS.PPP,"PPP conversion factor, GDP (LCU per international dollar)",167,22,1993,2014
+PA.NUS.PPPC.RF,Price level ratio of PPP conversion factor (GDP) to market exchange rate,164,22,1993,2014
+PA.NUS.PRVT.PP,"PPP conversion factor, private consumption (LCU per international dollar)",168,22,1993,2014
+SE.ENR.PRIM.FM.ZS,"Gross enrolment ratio, primary, gender parity index (GPI)",163,22,1993,2014
+SE.ENR.PRSC.FM.ZS,"Gross enrolment ratio, primary and secondary, gender parity index (GPI)",160,22,1993,2014
+SE.ENR.SECO.FM.ZS,"Gross enrolment ratio, secondary, gender parity index (GPI)",160,22,1993,2014
+SE.ENR.TERT.FM.ZS,"Gross enrolment ratio, tertiary, gender parity index (GPI)",159,22,1993,2014
+SE.PRE.ENRR,"Gross enrolment ratio, pre-primary, both sexes (%)",158,22,1993,2014
+SE.PRE.ENRR.FE,"Gross enrolment ratio, pre-primary, female (%)",157,22,1993,2014
+SE.PRE.ENRR.MA,"Gross enrolment ratio, pre-primary, male (%)",157,22,1993,2014
+SE.PRM.AGES,Official entrance age to primary education (years),168,22,1993,2014
+SE.PRM.CMPT.FE.ZS,"Primary completion rate, female (%)",153,22,1993,2014
+SE.PRM.CMPT.MA.ZS,"Primary completion rate, male (%)",153,22,1993,2014
+SE.PRM.CMPT.ZS,"Primary completion rate, both sexes (%)",154,22,1993,2014
+SE.PRM.DURS,Theoretical duration of primary education (years),168,22,1993,2014
+SE.PRM.ENRL,"Enrolment in primary education, both sexes (number)",167,22,1993,2014
+SE.PRM.ENRL.FE.ZS,Percentage of students in primary education who are female (%),166,22,1993,2014
+SE.PRM.ENRL.TC.ZS,Pupil-teacher ratio in primary education (headcount basis),162,22,1993,2014
+SE.PRM.ENRR,"Gross enrolment ratio, primary, both sexes (%)",163,22,1993,2014
+SE.PRM.ENRR.FE,"Gross enrolment ratio, primary, female (%)",163,22,1993,2014
+SE.PRM.ENRR.MA,"Gross enrolment ratio, primary, male (%)",163,22,1993,2014
+SE.PRM.GINT.FE.ZS,"Gross intake ratio to Grade 1 of primary education, female (%)",157,22,1993,2014
+SE.PRM.GINT.MA.ZS,"Gross intake ratio to Grade 1 of primary education, male (%)",157,22,1993,2014
+SE.PRM.GINT.ZS,"Gross intake ratio to Grade 1 of primary education, both sexes (%)",158,22,1993,2014
+SE.PRM.NENR,"Net enrolment rate, primary, both sexes (%)",155,22,1993,2014
+SE.PRM.NENR.FE,"Net enrolment rate, primary, female (%)",154,22,1993,2014
+SE.PRM.NENR.MA,"Net enrolment rate, primary, male (%)",154,22,1993,2014
+SE.PRM.PRIV.ZS,Percentage of enrolment in primary education in private institutions (%),160,22,1993,2014
+SE.PRM.REPT.FE.ZS,"Percentage of repeaters in primary education, all grades, female (%)",154,22,1993,2014
+SE.PRM.REPT.MA.ZS,"Percentage of repeaters in primary education, all grades, male (%)",154,22,1993,2014
+SE.PRM.REPT.ZS,"Percentage of repeaters in primary education, all grades, both sexes (%)",155,22,1993,2014
+SE.PRM.TCHR,"Teachers in primary education, both sexes (number)",162,22,1993,2014
+SE.PRM.TCHR.FE.ZS,Percentage of teachers in primary education who are female (%),162,22,1993,2014
+SE.PRM.TENR,"Adjusted net enrolment rate, primary, both sexes (%)",155,22,1993,2014
+SE.PRM.TENR.FE,"Adjusted net enrolment rate, primary, female (%)",154,22,1993,2014
+SE.PRM.TENR.MA,"Adjusted net enrolment rate, primary, male (%)",154,22,1993,2014
+SE.PRM.UNER,"Out-of-school children of primary school age, both sexes (number)",155,22,1993,2014
+SE.PRM.UNER.FE,"Out-of-school children of primary school age, female (number)",154,22,1993,2014
+SE.PRM.UNER.MA,"Out-of-school children of primary school age, male (number)",154,22,1993,2014
+SE.SEC.AGES,Official entrance age to lower secondary education (years),168,22,1993,2014
+SE.SEC.DURS,Theoretical duration of secondary education (years),168,22,1993,2014
+SE.SEC.ENRL,"Enrolment in secondary education, both sexes (number)",165,22,1993,2014
+SE.SEC.ENRL.FE.ZS,Percentage of students in secondary education who are female (%),164,22,1993,2014
+SE.SEC.ENRL.GC,"Enrolment in secondary general, both sexes (number)",167,22,1993,2014
+SE.SEC.ENRL.GC.FE.ZS,Percentage of students in secondary general education who are female (%),167,22,1993,2014
+SE.SEC.ENRL.TC.ZS,Pupil-teacher ratio in secondary education (headcount basis),156,22,1993,2014
+SE.SEC.ENRL.VO,"Enrolment in secondary vocational, both sexes (number)",164,22,1993,2014
+SE.SEC.ENRL.VO.FE.ZS,Percentage of students in secondary vocational education who are female (%),156,22,1993,2014
+SE.SEC.ENRR,"Gross enrolment ratio, secondary, both sexes (%)",161,22,1993,2014
+SE.SEC.ENRR.FE,"Gross enrolment ratio, secondary, female (%)",160,22,1993,2014
+SE.SEC.ENRR.MA,"Gross enrolment ratio, secondary, male (%)",160,22,1993,2014
+SE.SEC.REPT.ZS,"Percentage of repeaters in secondary general education, all grades, both sexes (%)",151,22,1993,2014
+SE.SEC.TCHR,"Teachers in secondary education, both sexes (number)",156,22,1993,2014
+SE.SEC.TCHR.FE,"Teachers in secondary education, female (number)",155,22,1993,2014
+SE.SEC.TCHR.FE.ZS,Percentage of teachers in secondary education who are female (%),155,22,1993,2014
+SE.TER.ENRR,"Gross enrolment ratio, tertiary, both sexes (%)",161,22,1993,2014
+SE.TER.ENRR.FE,"Gross enrolment ratio, tertiary, female (%)",159,22,1993,2014
+SE.TER.ENRR.MA,"Gross enrolment ratio, tertiary, male (%)",159,22,1993,2014
+SE.XPD.TOTL.GD.ZS,Government expenditure on education as % of GDP (%),155,22,1993,2014
+SH.DTH.IMRT,Number of infant deaths,166,23,1993,2015
+SH.DTH.MORT,Number of under-five deaths,166,23,1993,2015
+SH.DTH.NMRT,Number of neonatal deaths,166,23,1993,2015
+SH.DYN.MORT,"Mortality rate, under-5 (per 1,000)",166,23,1993,2015
+SH.DYN.NMRT,"Mortality rate, neonatal (per 1,000 live births)",166,23,1993,2015
+SH.H2O.SAFE.RU.ZS,"Improved water source, rural (% of rural population with access)",168,23,1993,2015
+SH.H2O.SAFE.UR.ZS,"Improved water source, urban (% of urban population with access)",168,23,1993,2015
+SH.H2O.SAFE.ZS,Improved water source (% of population with access),168,23,1993,2015
+SH.IMM.IDPT,"Immunization, DPT (% of children ages 12-23 months)",165,22,1993,2014
+SH.IMM.MEAS,"Immunization, measles (% of children ages 12-23 months)",165,22,1993,2014
+SH.MED.PHYS.ZS,"Physicians (per 1,000 people)",167,22,1993,2014
+SH.MMR.DTHS,Number of maternal deaths,167,23,1993,2015
+SH.MMR.RISK,Lifetime risk of maternal death (1 in: rate varies by country),167,23,1993,2015
+SH.MMR.RISK.ZS,Lifetime risk of maternal death (%),167,23,1993,2015
+SH.STA.ACSN,Improved sanitation facilities (% of population with access),167,23,1993,2015
+SH.STA.ACSN.RU,"Improved sanitation facilities, rural (% of rural population with access)",168,23,1993,2015
+SH.STA.ACSN.UR,"Improved sanitation facilities, urban (% of urban population with access)",167,23,1993,2015
+SH.STA.BRTC.ZS,Births attended by skilled health staff (% of total),160,22,1993,2014
+SH.STA.MMRT,"Maternal mortality ratio (modeled estimate, per 100,000 live births)",167,23,1993,2015
+SH.STA.MMRT.NE,"Maternal mortality ratio (national estimate, per 100,000 live births)",155,22,1993,2014
+SH.TBS.DTEC.ZS,"Tuberculosis case detection rate (%, all forms)",169,22,1993,2014
+SH.TBS.INCD,"Incidence of tuberculosis (per 100,000 people)",169,22,1993,2014
+SL.AGR.EMPL.ZS,Employment in agriculture (% of total employment),151,22,1993,2014
+SL.EMP.1524.SP.FE.ZS,"Employment to population ratio, ages 15-24, female (%) (modeled ILO estimate)",164,22,1993,2014
+SL.EMP.1524.SP.MA.ZS,"Employment to population ratio, ages 15-24, male (%) (modeled ILO estimate)",164,22,1993,2014
+SL.EMP.1524.SP.ZS,"Employment to population ratio, ages 15-24, total (%) (modeled ILO estimate)",164,22,1993,2014
+SL.EMP.TOTL.SP.FE.NE.ZS,"Employment to population ratio, 15+, female (%) (national estimate)",155,22,1993,2014
+SL.EMP.TOTL.SP.FE.ZS,"Employment to population ratio, 15+, female (%) (modeled ILO estimate)",164,22,1993,2014
+SL.EMP.TOTL.SP.MA.NE.ZS,"Employment to population ratio, 15+, male (%) (national estimate)",155,22,1993,2014
+SL.EMP.TOTL.SP.MA.ZS,"Employment to population ratio, 15+, male (%) (modeled ILO estimate)",164,22,1993,2014
+SL.EMP.TOTL.SP.NE.ZS,"Employment to population ratio, 15+, total (%) (national estimate)",156,22,1993,2014
+SL.EMP.TOTL.SP.ZS,"Employment to population ratio, 15+, total (%) (modeled ILO estimate)",164,22,1993,2014
+SL.IND.EMPL.ZS,Employment in industry (% of total employment),151,22,1993,2014
+SL.SRV.EMPL.ZS,Employment in services (% of total employment),151,22,1993,2014
+SL.TLF.ACTI.1524.FE.NE.ZS,"Labor force participation rate for ages 15-24, female (%) (national estimate)",154,22,1993,2014
+SL.TLF.ACTI.1524.FE.ZS,"Labor force participation rate for ages 15-24, female (%) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.ACTI.1524.MA.NE.ZS,"Labor force participation rate for ages 15-24, male (%) (national estimate)",154,22,1993,2014
+SL.TLF.ACTI.1524.MA.ZS,"Labor force participation rate for ages 15-24, male (%) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.ACTI.1524.NE.ZS,"Labor force participation rate for ages 15-24, total (%) (national estimate)",154,22,1993,2014
+SL.TLF.ACTI.1524.ZS,"Labor force participation rate for ages 15-24, total (%) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.ACTI.FE.ZS,"Labor force participation rate, female (% of female population ages 15-64) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.ACTI.MA.ZS,"Labor force participation rate, male (% of male population ages 15-64) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.ACTI.ZS,"Labor force participation rate, total (% of total population ages 15-64) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.CACT.FE.NE.ZS,"Labor force participation rate, female (% of female population ages 15+) (national estimate)",159,22,1993,2014
+SL.TLF.CACT.FE.ZS,"Labor force participation rate, female (% of female population ages 15+) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.CACT.FM.NE.ZS,Ratio of female to male labor force participation rate (%) (national estimate),159,22,1993,2014
+SL.TLF.CACT.FM.ZS,Ratio of female to male labor force participation rate (%) (modeled ILO estimate),167,22,1993,2014
+SL.TLF.CACT.MA.NE.ZS,"Labor force participation rate, male (% of male population ages 15+) (national estimate)",159,22,1993,2014
+SL.TLF.CACT.MA.ZS,"Labor force participation rate, male (% of male population ages 15+) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.CACT.NE.ZS,"Labor force participation rate, total (% of total population ages 15+) (national estimate)",161,22,1993,2014
+SL.TLF.CACT.ZS,"Labor force participation rate, total (% of total population ages 15+) (modeled ILO estimate)",167,22,1993,2014
+SL.TLF.TOTL.FE.ZS,"Labor force, female (% of total labor force)",167,22,1993,2014
+SL.TLF.TOTL.IN,"Labor force, total",167,22,1993,2014
+SL.UEM.1524.FE.ZS,"Unemployment, youth female (% of female labor force ages 15-24) (modeled ILO estimate)",164,22,1993,2014
+SL.UEM.1524.MA.ZS,"Unemployment, youth male (% of male labor force ages 15-24) (modeled ILO estimate)",164,22,1993,2014
+SL.UEM.1524.ZS,"Unemployment, youth total (% of total labor force ages 15-24) (modeled ILO estimate)",164,22,1993,2014
+SL.UEM.TOTL.FE.NE.ZS,"Unemployment, female (% of female labor force) (national estimate)",156,22,1993,2014
+SL.UEM.TOTL.FE.ZS,"Unemployment, female (% of female labor force)",164,22,1993,2014
+SL.UEM.TOTL.MA.NE.ZS,"Unemployment, male (% of male labor force) (national estimate)",156,22,1993,2014
+SL.UEM.TOTL.MA.ZS,"Unemployment, male (% of male labor force)",164,22,1993,2014
+SL.UEM.TOTL.NE.ZS,"Unemployment, total (% of total labor force) (national estimate)",157,22,1993,2014
+SL.UEM.TOTL.ZS,"Unemployment, total (% of total labor force)",164,22,1993,2014
+SM.POP.REFG,Refugee population by country or territory of asylum,164,22,1993,2014
+SM.POP.REFG.OR,Refugee population by country or territory of origin,167,22,1993,2014
+SP.ADO.TFRT,"Adolescent fertility rate (births per 1,000 women ages 15-19)",168,22,1993,2014
+SP.DYN.CONU.ZS,Contraceptive prevalence (% of women ages 15-49),159,22,1993,2014
+SP.DYN.IMRT.IN,"Mortality rate, infant (per 1,000 live births)",166,23,1993,2015
+SP.POP.0014.TO.ZS,"Population, ages 0-14 (% of total)",169,22,1993,2014
+SP.POP.1564.TO.ZS,"Population, ages 15-64 (% of total)",169,22,1993,2014
+SP.POP.65UP.TO.ZS,Population ages 65 and above (% of total),169,22,1993,2014
+SP.POP.DPND,Age dependency ratio (% of working-age population),169,22,1993,2014
+SP.POP.DPND.OL,"Age dependency ratio, old (% of working-age population)",169,22,1993,2014
+SP.POP.DPND.YG,"Age dependency ratio, young (% of working-age population)",169,22,1993,2014
+SP.POP.GROW,Population growth (annual %),170,22,1993,2014
+SP.POP.TOTL,"Population, total",170,22,1993,2014
+SP.POP.TOTL.FE.ZS,"Population, female (% of total)",169,22,1993,2014
+SP.RUR.TOTL,Rural population,169,22,1993,2014
+SP.RUR.TOTL.ZG,Rural population growth (annual %),169,22,1993,2014
+SP.RUR.TOTL.ZS,Rural population (% of total population),169,22,1993,2014
+SP.URB.GROW,Urban population growth (annual %),169,22,1993,2014
+SP.URB.TOTL,Urban population,169,22,1993,2014
+SP.URB.TOTL.IN.ZS,Urban population (% of total),169,22,1993,2014
+TG.VAL.TOTL.GD.ZS,Merchandise trade (% of GDP),164,22,1993,2014
+TM.VAL.AGRI.ZS.UN,Agricultural raw materials imports (% of merchandise imports),156,22,1993,2014
+TM.VAL.FOOD.ZS.UN,Food imports (% of merchandise imports),156,22,1993,2014
+TM.VAL.FUEL.ZS.UN,Fuel imports (% of merchandise imports),156,22,1993,2014
+TM.VAL.MANF.ZS.UN,Manufactures imports (% of merchandise imports),156,22,1993,2014
+TM.VAL.MMTL.ZS.UN,Ores and metals imports (% of merchandise imports),156,22,1993,2014
+TM.VAL.MRCH.AL.ZS,Merchandise imports from economies in the Arab World (% of total merchandise imports),153,22,1993,2014
+TM.VAL.MRCH.CD.WT,Merchandise imports (current USdollar),165,22,1993,2014
+TM.VAL.MRCH.HI.ZS,Merchandise imports from high-income economies (% of total merchandise imports),160,22,1993,2014
+TM.VAL.MRCH.R4.ZS,Merchandise imports from developing economies in Middle East & North Africa (% of total merchandise imports),157,22,1993,2014
+TM.VAL.MRCH.R5.ZS,Merchandise imports from developing economies in South Asia (% of total merchandise imports),157,22,1993,2014
+TM.VAL.MRCH.RS.ZS,"Merchandise imports by the reporting economy, residual (% of total merchandise imports)",160,22,1993,2014
+TM.VAL.MRCH.WL.CD,Merchandise imports by the reporting economy (current USdollar),160,22,1993,2014
+TX.VAL.AGRI.ZS.UN,Agricultural raw materials exports (% of merchandise exports),156,22,1993,2014
+TX.VAL.FOOD.ZS.UN,Food exports (% of merchandise exports),156,22,1993,2014
+TX.VAL.FUEL.ZS.UN,Fuel exports (% of merchandise exports),154,22,1993,2014
+TX.VAL.MANF.ZS.UN,Manufactures exports (% of merchandise exports),156,22,1993,2014
+TX.VAL.MMTL.ZS.UN,Ores and metals exports (% of merchandise exports),156,22,1993,2014
+TX.VAL.MRCH.AL.ZS,Merchandise exports to economies in the Arab World (% of total merchandise exports),157,22,1993,2014
+TX.VAL.MRCH.CD.WT,Merchandise exports (current USdollar),165,22,1993,2014
+TX.VAL.MRCH.HI.ZS,Merchandise exports to high-income economies (% of total merchandise exports),160,22,1993,2014
+TX.VAL.MRCH.R4.ZS,Merchandise exports to developing economies in Middle East & North Africa (% of total merchandise exports),158,22,1993,2014
+TX.VAL.MRCH.R5.ZS,Merchandise exports to developing economies in South Asia (% of total merchandise exports),153,22,1993,2014
+TX.VAL.MRCH.RS.ZS,"Merchandise exports by the reporting economy, residual (% of total merchandise exports)",160,22,1993,2014
+TX.VAL.MRCH.WL.CD,Merchandise exports by the reporting economy (current USdollar),160,22,1993,2014
