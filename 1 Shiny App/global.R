@@ -16,7 +16,7 @@ library(ggthemes)
 
 fortrends <- read_csv("World Dev Indic Final.csv")
 formaps <- fortrends[1:4]
-# names(fortrends)
+# names(fortrends); head(fortrends)
 # names(formaps)
 
 # Fixing Ivory Cost's name in both 'formap' and 'fortrends'
@@ -38,11 +38,14 @@ map_years <- unique(formaps$Year)           # For user to select year
 #------------------------------------------------------------------------
 
 # See how fortrends was read in above - under "For building maps"
-names(fortrends)[4] <- "Z_Score"
-names(fortrends)[5] <- "Mean_Centered_Score"
+names(fortrends)[4] <- "Raw_Score"
+names(fortrends)[5] <- "Z_Score"
+names(fortrends)[6] <- "Mean_Centered_Score"
 
 trends_countries <- unique(fortrends$Country)    # For user to select country
 trends_indicators <- unique(fortrends$Indicator) # For user to select indicator
+
+mycolors <- c("#f03b20", "#006837")  # 2 colors for my line plot
 
 
 #------------------------------------------------------------------------

@@ -4,16 +4,19 @@ library(shiny)
 
 dashboardPage(
   
-  dashboardHeader(title = "Development & Happiness of Countries"),
+  dashboardHeader(title = "Development & Happiness of Countries",
+                  titleWidth = 400),
   
   dashboardSidebar(
     sidebarUserPanel("Dimitri",
                      image = "Dimitri_Small5.jpg"),
     sidebarMenu(
       
-      menuItem("Trends", tabName = "trends", icon = icon("map")),
-      menuItem("Map", tabName = "map", icon = icon("database")),
-      menuItem("Predict Happiness", tabName = "happy", icon = icon("database"))
+      menuItem("About this App", tabName = "about", icon = icon("book")),
+      menuItem("Predict Happiness", tabName = "happy", icon = icon("database")),
+      menuItem("Trends Over Time", tabName = "trends", icon = icon("database")),
+      menuItem("Map of the World", tabName = "map", icon = icon("map"))
+
     )                # End of sidebarMenu
   ),                  # End of dashboardSidebar - need a comma here !!!
   
@@ -24,20 +27,21 @@ dashboardPage(
     #  ),
     tabItems(
       
+      tabItem(tabName = "about",
+              h4(verbatimTextOutput("about_app"))),  # TAB 0 'about'
+      
       tabItem(tabName = "trends",        # TAB 1 'trends'
-              fluidPage(
-                selectizeInput("trends_country",               # User selects the country for trends
-                               "Select a Country:", trends_countries,
-                               selected = trends_countries[1],
-                               width = 400),
-                selectizeInput("trends_indicator1",             # User selects indicator 1 for trends
-                               "Select a Metric:", trends_indicators,
-                               selected = trends_indicators[1],
-                               width = 400),
-                selectizeInput("trends_indicator2",             # User selects indicator 2 for trends
-                               "Select a Metric:", c(),
-                               selected = NULL,
-                               width = 400)
+              fluidRow(
+                box(selectizeInput("trends_country",               # User selects the country for trends
+                               "Select a Country:", c("Select", trends_countries),
+                               selected = "Select"), width = 2),
+                box(selectizeInput("trends_indicator1",             # User selects indicator 1 for trends
+                               "Select Metric 1:", c("Select", trends_indicators),
+                               selected = "Select"), width = 3),
+                box(selectizeInput("trends_indicator2",             # User selects indicator 2 for trends
+                               "Select Metric 2:", c(),
+                               selected = NULL), width = 3),
+                box(plotOutput("lines_raw"), width = 8)                         # ggplot of the raw metrics
                 
               )              # End of fluidPage 1, need a comma?
       ),   # End of tabItem 1 - need a comma!
@@ -75,11 +79,10 @@ dashboardPage(
                                               "Select Metrics to Predict Happiness:",
                                               choices = happy_predictors,
                                               selected = happy_predictors), width = 5),
-                       # box(h4(textOutput("importances_header"))),
-                       box(h4("Importances"), hr(),
+                       box(h4("Relative Importances of Predictors"), hr(),
                            DT::dataTableOutput("importance_table"),
                            width = 5)
-              )            # End of fluidRow 2, need a comma?
+              )            # End of fluidRow 3, need a comma?
       )               # End of tabItem3
     )              # End of tabItems
   )           # End of dashboardBody

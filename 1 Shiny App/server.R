@@ -13,11 +13,65 @@ function(input, output, session){
   #----------------------------------------------------------------------
   # For trends:
   #----------------------------------------------------------------------
+  
+  output$about_app <- renderText({
+    paste("Welcome!",
+          "This app allows you to:",
+          "A. determine what economic/societal indicators are the best predictors of countries' happiness,",
+          "   as perceived by a representative sample of its inhabitants;",
+          "B. explore how those different predictors of happiness varied in your country over time",
+          "C. compare your country's standing on those indicators to the other countries of the world.",
+          "This app uses two data sets from Kaggle:",
+          "1. The World Develompent Indicators (https://www.kaggle.com/worldbank/world-development-indicators/data), and ",
+          "2. The World Happiness Report (https://www.kaggle.com/unsdsn/world-happiness/data)", 
+          sep = "\n")
+  })
+  
+  
+  #----------------------------------------------------------------------
+  # For trends:
+  #----------------------------------------------------------------------
   observeEvent(input$trends_indicator1, {
     trends_indicators2 = trends_indicators[!trends_indicators %in% 
-                                           input$trends_indicator1]
+                                             input$trends_indicator1]
     updateSelectizeInput(session, inputId = "trends_indicator2", 
-                         choices = trends_indicators2)
+                         choices = c("Select", trends_indicators2))
+  })
+  
+  reactive_select_df <- reactive({      #  Grabbing the data for 2 indicators from 'fortrends'
+    # if (input$goButtonTrends == 0) return(NULL)
+    # isolate({
+      out <- fortrends %>% 
+        filter(Country %in% input$trends_country) %>% 
+        filter(Indicator %in% c(input$trends_indicator1, input$trends_indicator2)) %>% 
+        select(Indicator, Year, Raw_Score) %>% 
+        arrange(Indicator)
+      return(out)
+  #  })  # end of isolate
+  })  # end of reactive_select_df
+  
+  observe({
+  print(reactive_select_df())
+    print(names(reactive_select_df()))
+  })
+  
+  output$lines_raw <- renderPlot({
+    reactive_select_df() %>% ggplot(aes(x = Year, y = Raw_Score)) +
+      ylab("Raw Score") +
+      geom_point(aes(color = Indicator, 
+                     shape = Indicator)) + 
+      geom_line(aes(color = Indicator,
+                    linetype = Indicator)) +
+      scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
+      scale_x_continuous(limits = c(1992, 2015), 
+                         breaks = seq(1992, 2015, 1),
+                         expand = c(0, 0)) + 
+      ggtitle(input$trends_country) +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 90,hjust = 1),
+            legend.position = "bottom",
+            legend.title = element_blank()) +
+      guides(Indicator = guide_legend(nrow = 2))
   })
   
   #----------------------------------------------------------------------
@@ -58,12 +112,6 @@ function(input, output, session){
     
   })              # end of renderLeaflet
   
-  # output$temp <- renderTable({
-  #   formaps %>% filter(Year %in% input$map_year, 
-  #                      Indicator %in% input$map_indicator) %>% 
-  #     select(Country, Value) %>% 
-  #     right_join(my177, by = "Country")
-  # }) 
   
   #----------------------------------------------------------------------
   # For happy:
@@ -106,10 +154,7 @@ function(input, output, session){
       row.names(output) <- NULL
       rmse = sqrt(mean((fit$y - fit$predicted) ^ 2))
       return(list(importance = output, rmse = round(rmse, 2)))
-      
     })
-    
-    # end of my else statement
   })   # end of main_happy
   
   # output$importances_header <- renderText("Predictor Importances")

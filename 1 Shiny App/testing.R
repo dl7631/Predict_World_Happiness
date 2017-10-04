@@ -8,12 +8,12 @@ library(ggplot2)
 
 names(fortrends)
 names(formaps)
-mycountry <- trends_countries[131]
+mycountry <- trends_countries[133]
 # myindicator1 <- "Fixed telephone subscriptions (per 100 people)"
 temp <- fortrends %>% 
   filter(Country %in% mycountry) %>% 
-  filter(Indicator %in% c(trends_indicators[1], trends_indicators[8])) %>% 
-  select(Indicator, Year, c("Z_Score","Mean_Centered_Score")) %>% 
+  filter(Indicator %in% c(trends_indicators[2], trends_indicators[8])) %>% 
+  select(Indicator, Year, c("Raw_Score")) %>% 
   arrange(Indicator)
 
 # View(temp)
@@ -34,8 +34,10 @@ my7colors <- c("#d53e4f", "#f46d43", "#fdae61",
 mycolor1 <- my7colors[6]
 mycolor2 <- my7colors[1]
 
+mycolors <- c("#f03b20", "#006837")
 
-temp %>% ggplot(aes(x = Year, y = Z_Score)) +
+names(temp)
+temp %>% ggplot(aes(x = Year, y = Raw_Score)) +
   geom_point(aes(color = Indicator, 
                  shape = Indicator)) + 
   geom_line(aes(color = Indicator,
