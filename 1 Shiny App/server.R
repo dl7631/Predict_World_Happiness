@@ -14,9 +14,9 @@ function(input, output, session){
   # For happiness score world map:
   #----------------------------------------------------------------------
   
-  output$about_map <- renderText({
-    "Hover over a country to see its Happiness Index"
-  })
+  # output$about_map <- renderText({
+  #   "Hover over a country to see its Happiness Index"
+  # })
   
   output$map_of_happiness <- renderLeaflet({
     leaflet_map_happy %>%
@@ -26,23 +26,6 @@ function(input, output, session){
                                 round(forhappymap, 1), sep = ', ')
       )
   })              # end of renderLeaflet
-  #----------------------------------------------------------------------
-  # For trends:
-  #----------------------------------------------------------------------
-  
-  output$about_app <- renderText({
-    paste("Welcome!",
-          "This app allows you to:",
-          "A. determine what economic/societal indicators are the best predictors of countries' happiness,",
-          "   as perceived by a representative sample of its inhabitants;",
-          "B. explore how those different predictors of happiness varied in your country over time",
-          "C. compare your country's standing on those indicators to the other countries of the world.",
-          "This app uses two data sets from Kaggle:",
-          "1. The World Develompent Indicators (https://www.kaggle.com/worldbank/world-development-indicators/data), and ",
-          "2. The World Happiness Report (https://www.kaggle.com/unsdsn/world-happiness/data)", 
-          sep = "\n")
-  })
-  
   
   #----------------------------------------------------------------------
   # For trends:
@@ -54,16 +37,14 @@ function(input, output, session){
                          choices = c("Not selected", trends_indicators2))
   })
   
-  reactive_select_df <- reactive({      #  Grabbing the data for 2 indicators from 'fortrends'
-    # if (input$goButtonTrends == 0) return(NULL)
-    # isolate({
+  reactive_select_df <- reactive({  #  Grabbing the data for 2 indicators from 'fortrends'
+    
     out <- fortrends %>% 
       filter(Country %in% input$trends_country) %>% 
       filter(Indicator %in% c(input$trends_indicator1, input$trends_indicator2)) %>% 
       select(Indicator, Year, Raw_Score:Mean_Centered_Score) %>% 
       arrange(Indicator, Year)
     return(out)
-    #  })  # end of isolate
   })  # end of reactive_select_df
   
   # observe({
@@ -75,14 +56,14 @@ function(input, output, session){
     reactive_select_df() %>% ggplot(aes(x = Year, y = Raw_Score)) +
       ylab("Raw Score") +
       geom_point(aes(color = Indicator, 
-                     shape = Indicator)) + 
+                     shape = Indicator), size = 3) + 
       geom_line(aes(color = Indicator,
-                    linetype = Indicator)) +
+                    linetype = Indicator), size = 1) +
       scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
       scale_x_continuous(limits = c(1992, 2015), 
                          breaks = seq(1992, 2015, 1),
                          expand = c(0, 0)) + 
-      ggtitle(paste0(input$trends_country, ": Raw Scores")) +
+      ggtitle(paste0(input$trends_country, ": Raw Scores (also see Standardized Scores graph below)")) +
       theme_bw() +
       theme(plot.title = element_text(size = 18),
             axis.text.x = element_text(angle = 90, 
@@ -101,9 +82,9 @@ function(input, output, session){
     reactive_select_df() %>% ggplot(aes(x = Year, y = Z_Score)) +
       ylab("Standardized (Z) Score") +
       geom_point(aes(color = Indicator, 
-                     shape = Indicator)) + 
+                     shape = Indicator), size = 3) + 
       geom_line(aes(color = Indicator,
-                    linetype = Indicator)) +
+                    linetype = Indicator), size = 1) +
       scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
       scale_x_continuous(limits = c(1992, 2015), 
                          breaks = seq(1992, 2015, 1),
@@ -122,6 +103,7 @@ function(input, output, session){
             legend.text = element_text(size = 14)) +
       guides(Indicator = guide_legend(nrow = 2))
   })
+  
   #----------------------------------------------------------------------
   # For map:
   #----------------------------------------------------------------------
@@ -162,7 +144,7 @@ function(input, output, session){
   
   
   #----------------------------------------------------------------------
-  # For happy:
+  # For happy_predict:
   #----------------------------------------------------------------------
   
   observe({
@@ -182,7 +164,6 @@ function(input, output, session){
       }}
   })
   
-  
   main_happy = reactive({
     if (input$goButton == 0) return(NULL)
     isolate({
@@ -200,21 +181,39 @@ function(input, output, session){
       output <- data.frame(Predictors = selected, Importance = output, 
                            stringsAsFactors = F)
       row.names(output) <- NULL
-      rmse = sqrt(mean((fit$y - fit$predicted) ^ 2))
-      return(list(importance = output, rmse = round(rmse, 2)))
+      rmse = round(sqrt(mean((fit$y - fit$predicted) ^ 2)), 2)
+      rsqr = round(fit$rsq[length(fit$rsq)], 2)
+      return(list(importance = output, rmse = rmse,
+                  rsqr = rsqr))
     })
   })   # end of main_happy
   
   # output$importances_header <- renderText("Predictor Importances")
-  output$RMSE <- renderText({paste0("Model RMSE = ", main_happy()$rmse)})
+  output$RMSE <- renderText({
+    paste0("Model Quality: Rsqr = ", main_happy()$rsqr,                   
+           " & RMSE = ", main_happy()$rmse)
+  })
   output$importance_table <- DT::renderDataTable({
     DT::datatable(main_happy()$importance)
   })
   
   df_foscatter <- reactive({
-    forhappy %>% select(one_of(c("Happiness_Score",
+    df <- forhappy %>% select(one_of(c("Happiness_Score",
                                  input$scatter_ind,
                                  "Happiness_Score.html.tooltip")))
+    mycor <- round(cor(df$Happiness_Score, df[[input$scatter_ind]]),2)
+    return(list(df = df, mycor = mycor))
+  })
+  
+  # output$correlation <- reactive({
+  #   mycor <- cor(df_forscatter()[c("Happiness_Score", input$scatter_ind)])
+  #   return(mycor)
+  # })
+  
+  # observe({print(as.character(correlation()))})
+  
+  output$correlation_text <- renderText({
+    paste0("Linear Correlation = ", df_foscatter()$mycor)
   })
   
   output$scatter <- renderGvis({
@@ -225,18 +224,8 @@ function(input, output, session){
                        legend = "{position: 'none'}",
                        colors = "['#f03b20']")
     my_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
-    gvisScatterChart(df_foscatter(), options = my_options)
+    gvisScatterChart(df_foscatter()$df, options = my_options)
   })
   
-
 }   # End of the overall main function
 
-
-# observe({
-#   Iselected <- input$chosen_dv
-#   print(Iselected)
-# })
-# names(forhappy)
-
-
-# names(forhappy)

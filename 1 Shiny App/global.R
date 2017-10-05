@@ -47,7 +47,7 @@ names(fortrends)[6] <- "Mean_Centered_Score"
 trends_countries <- unique(fortrends$Country)    # For user to select country
 trends_indicators <- unique(fortrends$Indicator) # For user to select indicator
 
-mycolors <- c("#f03b20", "#006837")  # 2 colors for my line plot
+mycolors <- c("#E55A00", "#264283")  # 2 colors for my line plot
 
 
 #------------------------------------------------------------------------
