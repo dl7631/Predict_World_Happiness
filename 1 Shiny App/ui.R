@@ -13,10 +13,12 @@ dashboardPage(
     sidebarMenu(
       
       menuItem("About this App", tabName = "about", icon = icon("book")),
+      menuItem("Happiness by Country", tabName = "map_happy", icon = icon("map")),
       menuItem("Predict Happiness", tabName = "happy", icon = icon("database")),
+      menuItem("Happiness vs...?", tabName = "happy_scatter", icon = icon("database")),
       menuItem("Trends Over Time", tabName = "trends", icon = icon("database")),
       menuItem("Map of the World", tabName = "map", icon = icon("map"))
-
+      
     )                # End of sidebarMenu
   ),                  # End of dashboardSidebar - need a comma here !!!
   
@@ -30,34 +32,55 @@ dashboardPage(
       tabItem(tabName = "about",
               h4(verbatimTextOutput("about_app"))),  # TAB 0 'about'
       
+      tabItem(tabName = "map_happy",           # TAB 2 'map'
+              fluidPage(
+                h4(verbatimTextOutput("about_map")),
+                leafletOutput("map_of_happiness", height = 500)   # map is rendered
+              )              # End of fluidPage 1, need a comma?
+      ), 
+      
+      tabItem(tabName = "happy_scatter",
+              fluidRow(
+                box(selectizeInput("scatter_ind",           # User selects the indicator for scatter
+                                label = "Select an indicator to see how it relates to Happiness Score across countries:", 
+                                choices = c(names(forhappy)[4:77]),
+                                selected = names(forhappy)[1]), width = 4)
+              ),
+              fluidRow(
+                box(htmlOutput("scatter"))
+              )
+      ),    # end of Tabitem
+      
       tabItem(tabName = "trends",        # TAB 1 'trends'
               fluidRow(
                 box(selectizeInput("trends_country",               # User selects the country for trends
-                               "Select a Country:", c("Select", trends_countries),
-                               selected = "Select"), width = 2),
+                                   "Select a Country:", c("Not selected", trends_countries),
+                                   selected = "Not selected"), width = 2),
                 box(selectizeInput("trends_indicator1",             # User selects indicator 1 for trends
-                               "Select Metric 1:", c("Select", trends_indicators),
-                               selected = "Select"), width = 3),
+                                   "Select Metric 1:", c("Not selected", trends_indicators),
+                                   selected = "Not selected"), width = 3),
                 box(selectizeInput("trends_indicator2",             # User selects indicator 2 for trends
-                               "Select Metric 2:", c(),
-                               selected = NULL), width = 3),
-                box(plotOutput("lines_raw"), width = 8)                         # ggplot of the raw metrics
-                
-              )              # End of fluidPage 1, need a comma?
+                                   "Select Metric 2:", c(),
+                                   selected = NULL), width = 3),
+                box(plotOutput("lines_raw"), 
+                    width = 8),           # ggplot of the raw metrics
+                box(plotOutput("lines_z"),
+                    width = 8)            # ggplot of the standardized metrics
+              )              # End of fluidRow, need a comma?
       ),   # End of tabItem 1 - need a comma!
       
       tabItem(tabName = "map",           # TAB 2 'map'
-              fluidPage(
-                sliderInput("map_year",                  # User selects the year for map
-                            "Select a Year:", min = 1993,
-                            max = 2014, value = 1993,
-                            width = 400),
-                selectizeInput("map_indicator",             # User selects the indicator for map
-                               "Select a Metric:", map_indicators,
-                               selected = map_indicators[4],
-                               width = 400),
+              fluidRow(
+                box(sliderInput("map_year",                 # User selects the year for map
+                                "Select a Year:", min = 1993,
+                                max = 2014, value = 1993), width = 4),
+                box(selectizeInput("map_indicator",         # User selects the indicator for map
+                                   "Select a Metric:", map_indicators,
+                                   selected = map_indicators[4]), width = 5)
+              ),    # End of fluidRow 1
+              fluidRow(
                 leafletOutput("mymap", height = 500)        # map is rendered
-              )              # End of fluidPage 1, need a comma?
+              )              # End of fluidRow 2
       ),           # End of tabItem 2 - need a comma!
       
       tabItem(tabName = "happy",         # TAB 3 'happy'

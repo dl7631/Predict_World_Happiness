@@ -9,6 +9,7 @@ library(rnaturalearth)
 library(leaflet)
 library(ggplot2)
 library(ggthemes)
+library(googleVis)
 
 #------------------------------------------------------------------------
 # For building maps
@@ -27,8 +28,9 @@ my177 <- data.frame(Country = countries$name, stringsAsFactors = F)
 #------------------------------------
 # leaflet object to build the map
 leaflet_map <- leaflet(countries, options = leafletOptions(minZoom = 2)) %>% 
-  setView(lng = 28.0339,lat = 1.6596, zoom = 2)
-
+  setView(lng = 5,lat = 20, zoom = 2)   # 15, 5, 2
+leaflet_map_happy <- leaflet(countries, options = leafletOptions(minZoom = 2)) %>% 
+  setView(lng = 5,lat = 20, zoom = 2)
 map_indicators <- unique(formaps$Indicator) # For user to select indicator
 map_years <- unique(formaps$Year)           # For user to select year
 
@@ -54,7 +56,18 @@ mycolors <- c("#f03b20", "#006837")  # 2 colors for my line plot
 
 forhappy <- read_csv("Happiness Final.csv")
 # names(forhappy)
+# View(forhappy)
 happy_dvs <- names(forhappy)[2:3]                      # For user to pick the DV
 happy_predictors <- names(forhappy)[4:ncol(forhappy)] # For user to pick predictors
+forhappy$Happiness_Score.html.tooltip <- forhappy$Country
 
-
+# Input for happiness map:
+forhappymap <- forhappy %>% select(Country, Happiness_Score) %>% 
+  right_join(my177, by = "Country") %>% 
+  select(Happiness_Score) %>% unlist
+# View(forhappymap)
+# 
+# Continuous palette for happy map:
+forhappy_colors <- colorNumeric(
+    palette = c("#fee6ce","#e6550d"),
+    domain = forhappymap)(forhappymap)

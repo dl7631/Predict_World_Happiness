@@ -5,6 +5,7 @@ unique(fortrends$Year)
 unique(fortrends$Country)
 unique(fortrends$Indicator)
 library(ggplot2)
+library(googleVis)
 
 names(fortrends)
 names(formaps)
@@ -140,10 +141,22 @@ fit <- lm(formula = form, data = temp)
 fornames <- selected
 
 #--------------------------------------------------------
-# Unsolved:
-# 
-# How to make one input widget dependent on another
-# in my case I select one KPI, list of others should be shorter
-# How to generate 2 columns insead of 1?
-# Right now if I change the DV, the analysis is ran automatically
-# If I select new predictors, it runs automatically
+# gvis
+
+mtcars
+
+
+names(forhappy)
+forhappy$Happiness_Score.html.tooltip <- forhappy$Country
+indic_happy <- names(forhappy)[4]
+
+forgvis <- forhappy %>% select(indic_happy, Happiness_Score, Happiness_Score.html.tooltip)
+View(forgvis)
+my_options <- list(width = "1000px", height = "500px",
+                   title = paste0("Happiness vs. ", indic_happy),
+                   hAxis = "{title:'Country Indicator'}",
+                   vAxis = "{title:'Happiness Score'}",
+                   legend = "{position: 'none'}")
+my_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
+plot(gvisScatterChart(forgvis, options = my_options))
+
