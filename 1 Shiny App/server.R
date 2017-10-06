@@ -211,7 +211,7 @@ function(input, output, session){
     fordomain <- log(reactive_formap_values() - 
                        min(reactive_formap_values(), na.rm = T) + 1)
     colorNumeric(
-      palette = c("#fee6ce","#e6550d"),
+      palette = c("#ffffff","#e6550d"),   # c("#fee6ce", "#e6550d") # white = "#ffffff"
       domain = fordomain)(fordomain)
       # domain = reactive_formap_values())(reactive_formap_values())
   })

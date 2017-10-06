@@ -50,9 +50,8 @@ trends_indicators <- unique(fortrends$Indicator) # For user to select indicator
 
 mycolors <- c("#E55A00", "#264283")  # 2 colors for my line plot
 
-
 #------------------------------------------------------------------------
-# For driver analysis of Happiness
+# For World Map of happiness
 #------------------------------------------------------------------------
 
 forhappy <- read_csv("Happiness Final.csv")
@@ -68,7 +67,7 @@ forhappymap <- forhappy %>% select(Country, Happiness_Score) %>%
   select(Happiness_Score) %>% unlist
 # View(forhappymap)
 # 
-# Continuous palette for happy map:
+# Continuous palette for happy map:   # "#E55A00", "##2ca25f")
 forhappy_colors <- colorNumeric(
-    palette = c("#fee6ce","#e6550d"),
+    palette = c("#ffffff","#e6550d"),  #ffffff # original c("#fee6ce","#e6550d")
     domain = forhappymap)(forhappymap)
