@@ -160,3 +160,10 @@ my_options <- list(width = "1000px", height = "500px",
 my_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
 plot(gvisScatterChart(forgvis, options = my_options))
 
+
+# Palette code that works - as a backup:
+#   formap_colors <- reactive({
+# colorNumeric(
+#   palette = c("#fee6ce","#e6550d"),
+#   domain = reactive_formap_values())(reactive_formap_values())
+# })

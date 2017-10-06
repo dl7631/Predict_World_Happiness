@@ -1,17 +1,10 @@
 ## Dimitri's server.R ##
-library(shinydashboard)
-library(shiny)
-library(ggplot2)
-library(tidyverse)
-library(leaflet)
-library(DT)
-library(randomForest)
-
+## ----------------------------------------------
 
 function(input, output, session){
   
   #----------------------------------------------------------------------
-  # For happiness score world map:
+  # For Tab2: world map of happiness
   #----------------------------------------------------------------------
   
   # output$about_map <- renderText({
@@ -28,123 +21,7 @@ function(input, output, session){
   })              # end of renderLeaflet
   
   #----------------------------------------------------------------------
-  # For trends:
-  #----------------------------------------------------------------------
-  observeEvent(input$trends_indicator1, {
-    trends_indicators2 = trends_indicators[!trends_indicators %in% 
-                                             input$trends_indicator1]
-    updateSelectizeInput(session, inputId = "trends_indicator2", 
-                         choices = c("Not selected", trends_indicators2))
-  })
-  
-  reactive_select_df <- reactive({  #  Grabbing the data for 2 indicators from 'fortrends'
-    
-    out <- fortrends %>% 
-      filter(Country %in% input$trends_country) %>% 
-      filter(Indicator %in% c(input$trends_indicator1, input$trends_indicator2)) %>% 
-      select(Indicator, Year, Raw_Score:Mean_Centered_Score) %>% 
-      arrange(Indicator, Year)
-    return(out)
-  })  # end of reactive_select_df
-  
-  # observe({
-  #   print(reactive_select_df())
-  #   print(names(reactive_select_df()))
-  # })
-  
-  output$lines_raw <- renderPlot({
-    reactive_select_df() %>% ggplot(aes(x = Year, y = Raw_Score)) +
-      ylab("Raw Score") +
-      geom_point(aes(color = Indicator, 
-                     shape = Indicator), size = 3) + 
-      geom_line(aes(color = Indicator,
-                    linetype = Indicator), size = 1) +
-      scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
-      scale_x_continuous(limits = c(1992, 2015), 
-                         breaks = seq(1992, 2015, 1),
-                         expand = c(0, 0)) + 
-      ggtitle(paste0(input$trends_country, ": Raw Scores (also see Standardized Scores graph below)")) +
-      theme_bw() +
-      theme(plot.title = element_text(size = 18),
-            axis.text.x = element_text(angle = 90, 
-                                       hjust = 1,
-                                       size = 12),
-            axis.text.y = element_text(size = 12),
-            axis.title.x = element_text(size = 14),
-            axis.title.y = element_text(size = 14),
-            legend.position = "bottom",
-            legend.title = element_blank(),
-            legend.text = element_text(size = 14)) +
-      guides(Indicator = guide_legend(nrow = 2))
-  })
-  
-  output$lines_z <- renderPlot({
-    reactive_select_df() %>% ggplot(aes(x = Year, y = Z_Score)) +
-      ylab("Standardized (Z) Score") +
-      geom_point(aes(color = Indicator, 
-                     shape = Indicator), size = 3) + 
-      geom_line(aes(color = Indicator,
-                    linetype = Indicator), size = 1) +
-      scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
-      scale_x_continuous(limits = c(1992, 2015), 
-                         breaks = seq(1992, 2015, 1),
-                         expand = c(0, 0)) + 
-      ggtitle(paste0(input$trends_country, ": Standardized Scores")) +
-      theme_bw() +
-      theme(plot.title = element_text(size = 18),
-            axis.text.x = element_text(angle = 90, 
-                                       hjust = 1,
-                                       size = 12),
-            axis.text.y = element_text(size = 12),
-            axis.title.x = element_text(size = 14),
-            axis.title.y = element_text(size = 14),
-            legend.position = "bottom",
-            legend.title = element_blank(),
-            legend.text = element_text(size = 14)) +
-      guides(Indicator = guide_legend(nrow = 2))
-  })
-  
-  #----------------------------------------------------------------------
-  # For map:
-  #----------------------------------------------------------------------
-  
-  # A reactive that produces the necessary input for the map
-  
-  reactive_formap_values <- reactive({
-    
-    # Grab the data for the right year and the right indicator:
-    # Values
-    formaps %>% filter(Year %in% input$map_year, 
-                       Indicator %in% input$map_indicator) %>% 
-      select(Country, Value) %>% 
-      right_join(my177, by = "Country") %>% 
-      select(Value) %>% unlist
-  })                      # End of my reactive function reactive_formap_values
-  
-  
-  # Continuous palette function that is
-  # based on reactive_formap_values(), i.e., 
-  # in the order of the countries in my177 (countries$name)
-  formap_colors <- reactive({
-    colorNumeric(
-      palette = c("#fee6ce","#e6550d"),
-      domain = reactive_formap_values())(reactive_formap_values())
-  })
-  # Building the World map:
-  output$mymap <- renderLeaflet({
-    
-    # Apply the palette function above to provide colors to addPolygons:
-    leaflet_map %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-                  color = ~formap_colors(),
-                  label = paste(my177$Country, round(reactive_formap_values(), 1), sep = ', ')
-      )
-    
-  })              # end of renderLeaflet
-  
-  
-  #----------------------------------------------------------------------
-  # For happy_predict:
+  # For Tab 3: Prediction & Indicator Importance
   #----------------------------------------------------------------------
   
   observe({
@@ -177,7 +54,7 @@ function(input, output, session){
                           importance = TRUE, ntree = 500)
       output <- importance(fit, scale = T)[, 1]
       output[output < 0] <- 0
-      output <- round(output * 100/sum(output), 2)
+      output <- round(output * 100/sum(output), 1)
       output <- data.frame(Predictors = selected, Importance = output, 
                            stringsAsFactors = F)
       row.names(output) <- NULL
@@ -197,20 +74,17 @@ function(input, output, session){
     DT::datatable(main_happy()$importance)
   })
   
+  #----------------------------------------------------------------------
+  # For Tab 4: Scatter plot
+  #----------------------------------------------------------------------
+  
   df_foscatter <- reactive({
-    df <- forhappy %>% select(one_of(c("Happiness_Score",
-                                 input$scatter_ind,
-                                 "Happiness_Score.html.tooltip")))
+    df <- forhappy %>% select(one_of(c(input$scatter_ind,
+                                       "Happiness_Score",
+                                       "Happiness_Score.html.tooltip")))
     mycor <- round(cor(df$Happiness_Score, df[[input$scatter_ind]]),2)
     return(list(df = df, mycor = mycor))
   })
-  
-  # output$correlation <- reactive({
-  #   mycor <- cor(df_forscatter()[c("Happiness_Score", input$scatter_ind)])
-  #   return(mycor)
-  # })
-  
-  # observe({print(as.character(correlation()))})
   
   output$correlation_text <- renderText({
     paste0("Linear Correlation = ", df_foscatter()$mycor)
@@ -224,8 +98,137 @@ function(input, output, session){
                        legend = "{position: 'none'}",
                        colors = "['#f03b20']")
     my_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
+    my_options$trendlines <- "{0: { type: 'exponential', color: 'green'}}"
     gvisScatterChart(df_foscatter()$df, options = my_options)
   })
+  
+  #----------------------------------------------------------------------
+  # For Tab 5: Trends over time (line plots)
+  #----------------------------------------------------------------------
+  observeEvent(input$trends_indicator1, {
+    trends_indicators2 = trends_indicators[!trends_indicators %in% 
+                                             input$trends_indicator1]
+    updateSelectizeInput(session, inputId = "trends_indicator2", 
+                         choices = c("Not selected", trends_indicators2))
+  })
+  
+  reactive_select_df <- reactive({  #  Grabbing the data for 2 indicators from 'fortrends'
+    
+    out <- fortrends %>% 
+      filter(Country %in% input$trends_country) %>% 
+      filter(Indicator %in% c(input$trends_indicator1, input$trends_indicator2)) %>% 
+      select(Indicator, Year, Raw_Score:Mean_Centered_Score) %>% 
+      arrange(Indicator, Year)
+    return(out)
+  })  # end of reactive_select_df
+  
+  # observe({
+  #   print(reactive_select_df())
+  #   print(names(reactive_select_df()))
+  # })
+  
+  #----------------------------------------------------------------------
+  # For Tab 6: World map of indicators over time
+  #----------------------------------------------------------------------
+  
+  # Raw Scores:
+  output$lines_raw <- renderPlot({
+    reactive_select_df() %>% ggplot(aes(x = Year, y = Raw_Score)) +
+      ylab("Raw Score") +
+      geom_point(aes(color = Indicator, 
+                     shape = Indicator), size = 3) + 
+      geom_line(aes(color = Indicator,
+                    linetype = Indicator), size = 1) +
+      scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
+      scale_x_continuous(limits = c(1992, 2015), 
+                         breaks = seq(1992, 2015, 1),
+                         expand = c(0, 0)) + 
+      ggtitle(paste0(input$trends_country, 
+                     ": Raw Scores (also see Standardized Scores graph below)")) +
+      theme_bw() +
+      theme(plot.title = element_text(size = 18),
+            axis.text.x = element_text(angle = 90, 
+                                       hjust = 1,
+                                       size = 12),
+            axis.text.y = element_text(size = 12),
+            axis.title.x = element_text(size = 14),
+            axis.title.y = element_text(size = 14),
+            legend.position = "bottom",
+            legend.title = element_blank(),
+            legend.text = element_text(size = 14)) +
+      guides(Indicator = guide_legend(nrow = 2))
+  })
+  
+  # Z Scores:
+  output$lines_z <- renderPlot({
+    reactive_select_df() %>% ggplot(aes(x = Year, y = Z_Score)) +
+      ylab("Standardized (Z) Score") +
+      geom_point(aes(color = Indicator, 
+                     shape = Indicator), size = 3) + 
+      geom_line(aes(color = Indicator,
+                    linetype = Indicator), size = 1) +
+      scale_colour_manual(values = c(mycolors[1], mycolors[2])) +
+      scale_x_continuous(limits = c(1992, 2015), 
+                         breaks = seq(1992, 2015, 1),
+                         expand = c(0, 0)) + 
+      ggtitle(paste0(input$trends_country, ": Standardized (Z) Scores")) +
+      theme_bw() +
+      theme(plot.title = element_text(size = 18),
+            axis.text.x = element_text(angle = 90, 
+                                       hjust = 1,
+                                       size = 12),
+            axis.text.y = element_text(size = 12),
+            axis.title.x = element_text(size = 14),
+            axis.title.y = element_text(size = 14),
+            legend.position = "bottom",
+            legend.title = element_blank(),
+            legend.text = element_text(size = 14)) +
+      guides(Indicator = guide_legend(nrow = 2))
+  })
+  
+  #----------------------------------------------------------------------
+  # For World map of indicators over time
+  #----------------------------------------------------------------------
+  
+  # A reactive that produces the necessary input for the map
+  
+  reactive_formap_values <- reactive({
+    
+    # Grab the data for the right year and the right indicator:
+    formaps %>% filter(Year %in% input$map_year, 
+                       Indicator %in% input$map_indicator) %>% 
+      select(Country, Value) %>% 
+      right_join(my177, by = "Country") %>% 
+      select(Value) %>% unlist
+  })                      # End of my reactive function reactive_formap_values
+  
+  
+  # Continuous palette function that is
+  # based on reactive_formap_values(), i.e., 
+  # in the order of the countries in my177 (countries$name)
+  formap_colors <- reactive({
+    # Taking a log so that outliers have less impact on colors
+    fordomain <- log(reactive_formap_values() - 
+                       min(reactive_formap_values(), na.rm = T) + 1)
+    colorNumeric(
+      palette = c("#fee6ce","#e6550d"),
+      domain = fordomain)(fordomain)
+      # domain = reactive_formap_values())(reactive_formap_values())
+  })
+  # Building the World map:
+  output$mymap <- renderLeaflet({
+    
+    # Apply the palette function above to provide colors to addPolygons:
+    leaflet_map %>%
+      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
+                  color = ~formap_colors(),
+                  label = paste(my177$Country, round(reactive_formap_values(), 1), sep = ', ')
+      )
+    
+  })              # end of renderLeaflet
+  
+  
+
   
 }   # End of the overall main function
 

@@ -4,7 +4,8 @@
 
 library(shiny)
 library(shinydashboard)
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(rnaturalearth)
 library(leaflet)
 library(ggplot2)
