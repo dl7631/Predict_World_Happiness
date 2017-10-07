@@ -11,6 +11,7 @@ library(leaflet)
 library(ggplot2)
 library(ggthemes)
 library(googleVis)
+library(randomForest)
 
 #------------------------------------------------------------------------
 # For building maps
@@ -24,14 +25,19 @@ formaps <- fortrends[1:4]
 # Fixing Ivory Cost's name in both 'formap' and 'fortrends'
 countries <- rnaturalearth::countries110
 countries$name[32] <- "Ivory Coast"
+# Data frame with 177 country names as a column:
 my177 <- data.frame(Country = countries$name, stringsAsFactors = F)
 
 #------------------------------------
-# leaflet object to build the map
+# leaflet object to build the map:
+
+# Map of indicators:
 leaflet_map <- leaflet(countries, options = leafletOptions(minZoom = 2)) %>% 
-  setView(lng = 5,lat = 20, zoom = 2)   # 15, 5, 2
+  setView(lng = 5,lat = 20, zoom = 2)   # setting the center of the map
+# Map of happiness
 leaflet_map_happy <- leaflet(countries, options = leafletOptions(minZoom = 2)) %>% 
   setView(lng = 5,lat = 20, zoom = 2)
+
 map_indicators <- unique(formaps$Indicator) # For user to select indicator
 map_years <- unique(formaps$Year)           # For user to select year
 
@@ -59,7 +65,7 @@ forhappy <- read_csv("Happiness Final.csv")
 # View(forhappy)
 happy_dvs <- names(forhappy)[2:3]                      # For user to pick the DV
 happy_predictors <- names(forhappy)[4:ncol(forhappy)] # For user to pick predictors
-forhappy$Happiness_Score.html.tooltip <- forhappy$Country
+forhappy$Happiness_Score.html.tooltip <- forhappy$Country  # html column for gogleVis
 
 # Input for happiness map:
 forhappymap <- forhappy %>% select(Country, Happiness_Score) %>% 

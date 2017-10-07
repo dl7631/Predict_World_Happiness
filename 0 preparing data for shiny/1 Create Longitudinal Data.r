@@ -93,7 +93,6 @@ counts <- wdi %>%
 
 # Note - $ being replaced with dollar to avoid MathJax issue
 counts$IndicatorName <- gsub("\\$", "dollar", counts$IndicatorName)
-# write.csv(counts, "indicator counts.csv", row.names = F)
 # View(counts)
 
 #------------------------------------------------------
@@ -116,7 +115,6 @@ names(wdi14)
 # unique(wdi14$Year)
 dim(wdi14) # 85,495 rows
 
-
 #------------------------------------------------------
 # Removing years before 1993
 #------------------------------------------------------
@@ -138,6 +136,7 @@ dim(wdi)  # 1,940,922
 #------------------------------------------------------
 
 dim(wdi)  # 1,940,922
+names(counts)
 badcodes <- counts$IndicatorCode[counts$NumCountries < 151]
 wdi <- wdi %>% filter(!IndicatorCode %in% badcodes)
 dim(wdi)      # 1,140,686
@@ -235,43 +234,10 @@ unique(wdi$IndicatorName)
 # and just score-mean
 # it'll be used for some of the visuals
 # Also - updating the data and notmatchedmynames based on observations:
+
 #==================================================================================
-
-# notmatchedmynames 
-# View(wdi %>% group_by(IndicatorName, CountryName) %>% 
-#    summarize(n = n(), nr_of_nas = sum(is.na(Value))))
-
-
-#--------------------------------------
-# Removing additional indicators:
-# length(unique(wdi$IndicatorCode))
-# badindic <- c("% of students in primary ed. who are female",
-#               "Consumer price index (2010 = 100)",
-#               "Exports of goods and services (% of GDP)",
-#               "Gross enrolment ratio, primary, female (%)",
-#               "Gross enrolment ratio, primary, male (%)",
-#               "Physicians (per 1,000 people)",
-#               "Population ages 65 and above (% of total)",
-#               "Population, ages 0-14 (% of total)",
-#               "Population, ages 15-64 (% of total)",
-#               "Final consumption expenditure (annual % growth)",
-#               "Foreign direct investment, net inflows (% of GDP)",
-#               "GDP per capita (current US$)",
-#               "Imports of goods and services (% of GDP)",
-#               "Trade (% of GDP)",
-#               "Immunization, DPT (% of children ages 12-23 months)",
-#               "Improved water source (% of pop. with access)",
-#               "Internet users (per 100 people)",
-#               "Improved sanitation facilities (% of pop. with access)",
-#               "Incidence of tuberculosis (per 100,000 people)"
-#              )
-# 
-# dim(wdi)      # 116,636
-# wdi <- wdi %>% filter(!IndicatorName %in% badindic)
-# dim(wdi)      # 54,250
-# length(unique(wdi$IndicatorCode)) # 15
-
 ### Calculating Value Z Score and Centered Score by country:
+
 wdi <- wdi %>% group_by(IndicatorName, CountryName) %>% 
   mutate(Value.z = (Value - mean(Value, na.rm = T))/sd(Value, na.rm = T),
          Value.Centered = Value - mean(Value, na.rm = T)) %>% 
@@ -289,7 +255,6 @@ sum(temp$std); length(unique(wdi$IndicatorName)) *
 ### Replacing NA in Value.z for all cases when Value is not NA with a 0
 wdi$Value.z[is.na(wdi$Value.z) & !is.na(wdi$Value)] <- 0
 
-# write.csv(wdi, "x test.csv", row.names = F)
 #------------------------------------------------------
 # Making implicit NAs explicit so that every country
 # has a value (or NA) for every indicator, every year
@@ -310,3 +275,5 @@ dim(wdi)  # 127,160
 names(wdi)[c(1, 3)] <- c("Country", "Indicator")
 
 # write.csv(wdi[c(1:3, 6:8)], "World Dev Indic Final.csv", row.names = F, na = "")
+
+# !!!! Now, for Happiness data merge run file '2 Create 2014-2015 Data.r' !!!!

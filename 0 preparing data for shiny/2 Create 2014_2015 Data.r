@@ -7,8 +7,7 @@ library(ggplot2)
 
 dim(wdi14) # 85,495 rows
 # View(count(wdi14, IndicatorName))
-View(wdi14 %>% distinct(CountryName))
-
+# View(wdi14 %>% distinct(CountryName))
 
 # ------------------------------------------------------
 # Counting number of countries that have each indicator
@@ -65,8 +64,11 @@ wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName,
                                        pattern = "total merchandise exports",
                                        replacement = "total")
 wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
+                                       pattern = "Merchandise imports by the reporting economy, residual",
+                                       replacement = "Merchandies imports by economy, residual")
+wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
                                        pattern = "Merchandise imports by the reporting economy",
-                                       replacement = "Merchandise imports")
+                                       replacement = "Merchandise imports by economy")
 wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
                                        pattern = " of total merchandise imports",
                                        replacement = "of total")
@@ -79,9 +81,7 @@ wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName,
 wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
                                        pattern = "pop\\. with access",
                                        replacement = "pop\\.")
-wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
-                                       pattern = "",
-                                       replacement = "")
+
 wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
                                        pattern = "0=less disclosure to 10=more disclosure",
                                        replacement = "0=less to 10=more")
@@ -94,7 +94,10 @@ wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName,
 wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
                                        pattern = "modeled estimate\\, ",
                                        replacement = "")
-unique(wdi14$IndicatorName)
+wdi14$IndicatorName <- str_replace_all(wdi14$IndicatorName, 
+                                       pattern = "of total",
+                                       replacement = "of ttl\\.")
+# unique(wdi14$IndicatorName)
 
 
 # ------------------------------------------------------
@@ -104,7 +107,7 @@ unique(wdi14$IndicatorName)
 wdi14 <- wdi14 %>% select(CountryName, IndicatorName, Value)
 wdi14_spr <- spread(wdi14, key = IndicatorName, value = Value)
 dim(wdi14_spr)
-names(wdi14_spr)
+# names(wdi14_spr)
 
 # ------------------------------------------------------
 # Checking that all indicators have variance > 0
@@ -175,7 +178,7 @@ names(wdi14_spr)[1] <- "Country"
 nrow(wdi14_spr)  # 131
 happy <- left_join(wdi14_spr, hap, by = "Country")
 nrow(happy)  # 131
-head(happy)
+# head(happy)
 
 # Reorder the columns a bit:
 # names(happy)
@@ -194,7 +197,6 @@ happy <- happy[, badcolumns]
 # Removing a couple more columns
 happy <- happy[, c(-25, -26)]
 dim(happy)  # 77 COLUMNS LEFT
-
 
 # write.csv(happy, "Happiness Final.csv", row.names = F, na = "")
 

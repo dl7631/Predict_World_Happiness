@@ -6,11 +6,7 @@ function(input, output, session){
   #----------------------------------------------------------------------
   # For Tab2: world map of happiness
   #----------------------------------------------------------------------
-  
-  # output$about_map <- renderText({
-  #   "Hover over a country to see its Happiness Index"
-  # })
-  
+
   output$map_of_happiness <- renderLeaflet({
     leaflet_map_happy %>%
       addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
@@ -24,6 +20,7 @@ function(input, output, session){
   # For Tab 3: Prediction & Indicator Importance
   #----------------------------------------------------------------------
   
+  # Allow the user to select the predictors of Happiness: 
   observe({
     if (input$selectall > 0) {
       if (input$selectall %% 2 == 0) {
@@ -41,6 +38,7 @@ function(input, output, session){
       }}
   })
   
+  # Main function - calculates prediction, importances, model fit:
   main_happy = reactive({
     if (input$goButton == 0) return(NULL)
     isolate({
@@ -65,11 +63,12 @@ function(input, output, session){
     })
   })   # end of main_happy
   
-  # output$importances_header <- renderText("Predictor Importances")
+  # Text for model fit indicators:
   output$RMSE <- renderText({
     paste0("Model Quality: Rsqr = ", main_happy()$rsqr,                   
            " & RMSE = ", main_happy()$rmse)
   })
+  # Table of predictor importances:
   output$importance_table <- DT::renderDataTable({
     DT::datatable(main_happy()$importance)
   })
@@ -78,6 +77,7 @@ function(input, output, session){
   # For Tab 4: Scatter plot
   #----------------------------------------------------------------------
   
+  # Return data frame for scatter plot and correlation between indicator & happiness
   df_foscatter <- reactive({
     df <- forhappy %>% select(one_of(c(input$scatter_ind,
                                        "Happiness_Score",
@@ -86,10 +86,12 @@ function(input, output, session){
     return(list(df = df, mycor = mycor))
   })
   
+  # Text of the correlation
   output$correlation_text <- renderText({
     paste0("Linear Correlation = ", df_foscatter()$mycor)
   })
   
+  # Scatter plot with indicator on X and happiness on Y:
   output$scatter <- renderGvis({
     my_options <- list(height = "400px",  # width = "1000px",
                        title = paste0("Happiness vs. ", input$scatter_ind),
@@ -98,13 +100,15 @@ function(input, output, session){
                        legend = "{position: 'none'}",
                        colors = "['#f03b20']")
     my_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
-    my_options$trendlines <- "{0: { type: 'exponential', color: 'green'}}"
+    my_options$trendlines <- "{0: { type: 'exponential', color: 'green'}}" # a trendline
     gvisScatterChart(df_foscatter()$df, options = my_options)
   })
   
   #----------------------------------------------------------------------
   # For Tab 5: Trends over time (line plots)
   #----------------------------------------------------------------------
+  
+  # Selecting 2 indicators to plot:
   observeEvent(input$trends_indicator1, {
     trends_indicators2 = trends_indicators[!trends_indicators %in% 
                                              input$trends_indicator1]
@@ -112,7 +116,8 @@ function(input, output, session){
                          choices = c("Not selected", trends_indicators2))
   })
   
-  reactive_select_df <- reactive({  #  Grabbing the data for 2 indicators from 'fortrends'
+  #  Grabbing the data for 2 indicators from 'fortrends'
+  reactive_select_df <- reactive({
     
     out <- fortrends %>% 
       filter(Country %in% input$trends_country) %>% 
@@ -122,16 +127,7 @@ function(input, output, session){
     return(out)
   })  # end of reactive_select_df
   
-  # observe({
-  #   print(reactive_select_df())
-  #   print(names(reactive_select_df()))
-  # })
-  
-  #----------------------------------------------------------------------
-  # For Tab 6: World map of indicators over time
-  #----------------------------------------------------------------------
-  
-  # Raw Scores:
+  # Line graph of raw Scores:
   output$lines_raw <- renderPlot({
     reactive_select_df() %>% ggplot(aes(x = Year, y = Raw_Score)) +
       ylab("Raw Score") +
@@ -159,7 +155,7 @@ function(input, output, session){
       guides(Indicator = guide_legend(nrow = 2))
   })
   
-  # Z Scores:
+  # Line graph of Z Scores:
   output$lines_z <- renderPlot({
     reactive_select_df() %>% ggplot(aes(x = Year, y = Z_Score)) +
       ylab("Standardized (Z) Score") +
@@ -187,7 +183,7 @@ function(input, output, session){
   })
   
   #----------------------------------------------------------------------
-  # For World map of indicators over time
+  # For Tab 6: World map of indicators over time
   #----------------------------------------------------------------------
   
   # A reactive that produces the necessary input for the map
@@ -207,14 +203,15 @@ function(input, output, session){
   # based on reactive_formap_values(), i.e., 
   # in the order of the countries in my177 (countries$name)
   formap_colors <- reactive({
-    # Taking a log so that outliers have less impact on colors
+    # Taking a log so that outliers have less impact on colors of the rest
     fordomain <- log(reactive_formap_values() - 
                        min(reactive_formap_values(), na.rm = T) + 1)
     colorNumeric(
       palette = c("#ffffff","#e6550d"),   # c("#fee6ce", "#e6550d") # white = "#ffffff"
       domain = fordomain)(fordomain)
-      # domain = reactive_formap_values())(reactive_formap_values())
+      # domain = reactive_formap_values())(reactive_formap_values())  # original line
   })
+  
   # Building the World map:
   output$mymap <- renderLeaflet({
     

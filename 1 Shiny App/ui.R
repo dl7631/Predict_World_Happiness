@@ -50,16 +50,16 @@ dashboardPage(
               h3("***"),
               h4("This app makes it easy to:"),
               h4("1. See how your country compares to other countries on World 
-                 Happiness Index (i.e., happyness perceptions of a representative 
-                 sample of the country's population.)"),
+                 Happiness Score (i.e., happyness perceptions of a representative 
+                 sample of а country's population.)"),
               h4("2. Statistically determine what economic/societal indicators are 
                 the best predictors of countries' happiness around the world."),
               h4("3. Explore the nature of the relationship between each indicator 
-                 and Happiness Index."),
+                 and Happiness Score."),
               h4("4. Explore how different important predictors of happiness 
                  varied in your country over time."),
-              h4("5. Compare your country's standing on each indicator to the 
-                 other countries of the world - over time."),
+              h4("5. Compare your country's standing on each indicator - over time - to  
+                 other countries."),
               h4(""),
               h3("***"),
               h4("This app is based on two data sets from Kaggle:"),
@@ -75,7 +75,7 @@ dashboardPage(
       
       tabItem(tabName = "map_happy",           # TAB 2
               fluidPage(
-                h4("Darker countries have a higher Happiness score today."), 
+                h4("The shade of the country corresponds to the magnitude of the Happiness score. The score ranges from 1 to 10"), 
                 h5("Hover over any country to see its name and happiness score; zoom 
                    in/out or drag the map as needed."),
                 leafletOutput("map_of_happiness", height = 500)
@@ -89,7 +89,7 @@ dashboardPage(
       tabItem(tabName = "happy_predict",         # TAB 3
               fluidRow(
                 box(h4("Select indicators and run a predictive model
-                           (Random Forests) to determine their relative 
+                       (Random Forests) to determine their relative 
                        importance in predicting Happiness."), 
                     width = 5, height = 100),
                 box(selectizeInput("chosen_dv",                  # User selects the DV for happy
@@ -119,8 +119,8 @@ dashboardPage(
                            width = 5),
                        box(h4("Relative Importances of Predictors (sums up to 100)"), hr(),
                            DT::dataTableOutput("importance_table"),
-                           width = 5,
-                           background = "light-blue")
+                           width = 5)
+                       # background = "light-blue")
               )            # End of fluidRow
       ),               # End of tabItem 'happy_predict
       
@@ -129,19 +129,28 @@ dashboardPage(
       #----------------------------------------------------------------------
       
       tabItem(tabName = "happy_scatter",           # TAB 4
+              
               fluidRow(
                 box(selectizeInput("scatter_ind",           # User selects the indicator for scatter
-                                   label = "Select an indicator to see how it relates to Happiness Score across countries:", 
+                                   label = "Select an indicator to see how it relates to 
+                                            Happiness Score across countries:", 
                                    choices = c(names(forhappy)[4:77]),
                                    selected = names(forhappy)[1]), 
                     width = 6,
                     background = "light-blue"),
-                box(h4(textOutput("correlation_text")), width = 3, height = 100)
-              ),
+                box(h4(textOutput("correlation_text")), width = 3, # height = 100,  ?box
+                    background = "light-blue"
+                )
+              ),            # end of fluidRow 1
+              
               fluidRow(
                 box(htmlOutput("scatter"),
-                    background = "light-blue")
-              )
+                    background = "light-blue"),
+                box(h4("Hover over dots to see country names; 
+                       highlight a section with your mouse to zoom in."),
+                    width = 3, background = "light-blue")
+              )            # end of fluidRow 2
+              
       ),    # end of Tabitem 'happy_scatter'
       
       #----------------------------------------------------------------------
