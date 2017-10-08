@@ -1,5 +1,7 @@
-## Dimitri's server.R ##
-## ----------------------------------------------
+
+## ----------------------------------------------------------------------------------------------------------
+## Dimitri's  Shiny App - server.R
+## ----------------------------------------------------------------------------------------------------------
 
 function(input, output, session){
   
@@ -105,7 +107,49 @@ function(input, output, session){
   })
   
   #----------------------------------------------------------------------
-  # For Tab 5: Trends over time (line plots)
+  # For Tab 5: World map of indicators over time
+  #----------------------------------------------------------------------
+  
+  # A reactive that produces the necessary input for the map
+  
+  reactive_formap_values <- reactive({
+    
+    # Grab the data for the right year and the right indicator:
+    formaps %>% filter(Year %in% input$map_year, 
+                       Indicator %in% input$map_indicator) %>% 
+      select(Country, Value) %>% 
+      right_join(my177, by = "Country") %>% 
+      select(Value) %>% unlist
+  })                      # End of my reactive function reactive_formap_values
+  
+  
+  # Continuous palette function that is
+  # based on reactive_formap_values(), i.e., 
+  # in the order of the countries in my177 (countries$name)
+  formap_colors <- reactive({
+    # Taking a log so that outliers have less impact on colors of the rest
+    fordomain <- log(reactive_formap_values() - 
+                       min(reactive_formap_values(), na.rm = T) + 1)
+    colorNumeric(
+      palette = c("#ffffff","#e6550d"),   # c("#fee6ce", "#e6550d") # white = "#ffffff"
+      domain = fordomain)(fordomain)
+      # domain = reactive_formap_values())(reactive_formap_values())  # original line
+  })
+  
+  # Building the World map:
+  output$mymap <- renderLeaflet({
+    
+    # Apply the palette function above to provide colors to addPolygons:
+    leaflet_map %>%
+      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
+                  color = ~formap_colors(),
+                  label = paste(my177$Country, round(reactive_formap_values(), 1), sep = ', ')
+      )
+    
+  })              # end of renderLeaflet
+  
+  #----------------------------------------------------------------------
+  # For Tab 6: Trends over time (line plots)
   #----------------------------------------------------------------------
   
   # Selecting 2 indicators to plot:
@@ -181,49 +225,6 @@ function(input, output, session){
             legend.text = element_text(size = 14)) +
       guides(Indicator = guide_legend(nrow = 2))
   })
-  
-  #----------------------------------------------------------------------
-  # For Tab 6: World map of indicators over time
-  #----------------------------------------------------------------------
-  
-  # A reactive that produces the necessary input for the map
-  
-  reactive_formap_values <- reactive({
-    
-    # Grab the data for the right year and the right indicator:
-    formaps %>% filter(Year %in% input$map_year, 
-                       Indicator %in% input$map_indicator) %>% 
-      select(Country, Value) %>% 
-      right_join(my177, by = "Country") %>% 
-      select(Value) %>% unlist
-  })                      # End of my reactive function reactive_formap_values
-  
-  
-  # Continuous palette function that is
-  # based on reactive_formap_values(), i.e., 
-  # in the order of the countries in my177 (countries$name)
-  formap_colors <- reactive({
-    # Taking a log so that outliers have less impact on colors of the rest
-    fordomain <- log(reactive_formap_values() - 
-                       min(reactive_formap_values(), na.rm = T) + 1)
-    colorNumeric(
-      palette = c("#ffffff","#e6550d"),   # c("#fee6ce", "#e6550d") # white = "#ffffff"
-      domain = fordomain)(fordomain)
-      # domain = reactive_formap_values())(reactive_formap_values())  # original line
-  })
-  
-  # Building the World map:
-  output$mymap <- renderLeaflet({
-    
-    # Apply the palette function above to provide colors to addPolygons:
-    leaflet_map %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-                  color = ~formap_colors(),
-                  label = paste(my177$Country, round(reactive_formap_values(), 1), sep = ', ')
-      )
-    
-  })              # end of renderLeaflet
-  
   
 
   
