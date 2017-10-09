@@ -11,8 +11,9 @@ function(input, output, session){
 
   output$map_of_happiness <- renderLeaflet({
     leaflet_map_happy %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-                  color = ~forhappy_colors,
+      addPolygons(stroke = TRUE, smoothFactor = 0.3, fillOpacity = 1,
+                  color = 'gray', weight = 1,
+                  fillColor = ~forhappy_colors,
                   label = paste(my177$Country, 
                                 round(forhappymap, 1), sep = ', ')
       )
@@ -141,8 +142,9 @@ function(input, output, session){
     
     # Apply the palette function above to provide colors to addPolygons:
     leaflet_map %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-                  color = ~formap_colors(),
+      addPolygons(stroke = TRUE, smoothFactor = 0.3, fillOpacity = 1,
+                  color = 'gray', weight = 1,
+                  fillColor = ~formap_colors(),
                   label = paste(my177$Country, round(reactive_formap_values(), 1), sep = ', ')
       )
     
@@ -195,7 +197,7 @@ function(input, output, session){
             axis.title.y = element_text(size = 14),
             legend.position = "bottom",
             legend.title = element_blank(),
-            legend.text = element_text(size = 14)) +
+            legend.text = element_text(size = 16)) +
       guides(Indicator = guide_legend(nrow = 2))
   })
   

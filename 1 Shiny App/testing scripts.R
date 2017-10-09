@@ -312,8 +312,9 @@ myvalues <- 1:177
 mycolors <- colorNumeric(palette = c("#fee6ce","#e6550d"),
                          domain = myvalues)(myvalues)
 mymap %>%
-  addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-              color = ~mycolors,
+  addPolygons(stroke = TRUE, smoothFactor = 0.3, fillOpacity = 1,
+              color = "gray", opacity = 1, weight = 0.5,
+              fillColor = ~mycolors,  # color
               label = countries$name)
 
-
+?addPolygons

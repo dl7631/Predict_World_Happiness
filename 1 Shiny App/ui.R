@@ -19,13 +19,13 @@ dashboardPage(
       
       menuItem("About this App", tabName = "about", 
                icon = icon("question-circle")),
-      menuItem("Happiness Worldmap", tabName = "map_happy", 
+      menuItem("Happiness World Map", tabName = "map_happy", 
                icon = icon("smile-o")),
       menuItem("Predict Happiness", tabName = "happy_predict", 
                icon = icon("magic")),
       menuItem("Happiness vs. indicators", tabName = "happy_scatter", 
                icon = icon("spinner")),
-      menuItem("Worldmap by Indicator", tabName = "map", 
+      menuItem("World Map by Indicator", tabName = "map", 
                icon = icon("globe")),
       menuItem("Indicator Trends Over Time", tabName = "trends", 
                icon = icon("line-chart"))
