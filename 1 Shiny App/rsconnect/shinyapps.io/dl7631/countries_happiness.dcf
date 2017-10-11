@@ -1,0 +1,13 @@
+name: countries_happiness
+title: Countries_Happiness
+username:
+account: dl7631
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 224071
+bundleId: 1021315
+url: https://dl7631.shinyapps.io/countries_happiness/
+when: 1507727432.25211
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|testing scripts.R
